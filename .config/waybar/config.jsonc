@@ -167,7 +167,7 @@
 
     "custom/uptime": {
         "exec": "awk '{print int($1/3600)\":\"int(($1%3600)/60)\":\"int($1%60)}' /proc/uptime | awk -F: '{printf \"%02d:%02d:%02d\\n\", $1, $2, $3}'",
-        "interval": 1
+        "interval": 1,
         "format": " {}  ",
         "tooltip": false
     }
