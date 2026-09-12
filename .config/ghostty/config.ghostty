@@ -22,8 +22,8 @@ palette = 1 = #ff0000
 palette = 2 = #00ff00
 palette = 3 = #00f0f1
 palette = 4 = #7aa2f7
-palette = 5 = #bb9af7
-palette = 6 = #0fb0ff
+palette = 5 = #00ff00
+palette = 6 = #50b0ff
 palette = 7 = #ffb030
 
 # Яркие цвета (для папок, Git и вывода команд)
