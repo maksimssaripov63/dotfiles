@@ -1,0 +1,26 @@
+* {
+    background-color:            #1a1b26;
+    text-color:                  #c0caf5;
+    font:                        "JetBrainsMono Nerd Font 11";
+}
+window {
+    anchor:                      center;
+    location:                    center;
+    width:                       300px;
+    border:                      2px;
+    border-color:                #7aa2f7;
+    padding:                     20px;
+    children:                    [ listview ];
+}
+listview {
+    lines:                       5;
+    columns:                     1;
+    scrollbar:                   false;
+}
+element {
+    padding:                     8px;
+}
+element selected {
+    background-color:            #7aa2f7;
+    text-color:                  #1a1b26;
+}
