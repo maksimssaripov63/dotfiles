@@ -7,8 +7,8 @@ background-opacity = 0.9
 background-blur = true
 
 # Отступы внутри терминала
-window-padding-x = 12
-window-padding-y = 12
+window-padding-x = 1
+window-padding-y = 1
 window-decoration = false
 
 # --- Кастомная палитра цветов (Неоновый Темный) ---
