@@ -1,0 +1,176 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "height": 34,
+
+    // --- Распределение модулей по позициям ---
+    "modules-left": [
+        "custom/launcher",
+        "hyprland/workspaces",
+        "custom/add_workspace",
+        "custom/usb"
+    ],
+    
+    "modules-center": [
+        "custom/uptime",
+        "battery",
+        "clock",
+        "custom/language"
+    ],
+    
+    "modules-right": [
+        "cpu",
+        "custom/gpu",
+        "memory",
+        "pulseaudio#output",
+        //"custom/volume",
+        "pulseaudio#microphone",
+        "backlight",
+        "bluetooth",
+        "custom/power",
+        ""
+    ],
+
+    // --- Настройки модулей ЦЕНТРА ---
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}%",
+        "format-charging": "{capacity}%",
+        "format-plugged": "PLUG {capacity}%"
+    },
+
+    "clock": {
+        "interval": 1,
+        "format": "  {:%H:%M:%S  |  %d.%m.%Y (%A)}",
+        "tooltip": false // Полностью отключаем капризный встроенный тултип, чтобы он не мешал
+        // ЛЕВЫЙ КЛИК: Открывает календарь, если он закрыт, или мгновенно прячет его, если он уже на экране
+        //"on-click": "pkill yad || yad --calendar --width=250 --height=200 --undecorated --fixed --posx=830 --posy=45 --close-on-unfocus"
+    },
+
+
+    "custom/language": {
+        // Скрипт мгновенно вытаскивает активный язык системы, берет первые 2 буквы и делает их заглавными (EN/RU)
+        "exec": "hyprctl devices -j | jq -r '.keyboards[] | select(.main == true) | .active_keymap' | cut -c1-2 | tr '[:lower:]' '[:upper:]'",
+        "interval": 0,
+        "format": "   {}",
+        "tooltip": false,
+        "on-click": "echo 'English (EN)\nРусский (RU)' | wofi --dmenu --prompt 'Выберите язык / Select language' | grep -q 'Русский' && hyprctl switchxkblayout all 1 || hyprctl switchxkblayout all 0"
+    },
+
+
+    // --- Настройки модулей СПРАВА ---
+    "cpu": {
+        "interval": 2,
+        "format": "  CPU:{usage}%"
+    },
+
+    "custom/gpu": {
+        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits | awk '{print \"  GPU:\" $1 \"%\"}'",
+        "interval": 2,
+        "format": "{}"
+    },
+
+    "memory": {
+        "interval": 2,
+        "format": "  RAM:{used:0.1f}G/{total:0.1f}G"
+    },
+
+    // --- УПРАВЛЕНИЕ ВЫВОДОМ ЗВУКА (ДИНАМИКИ/НАУШНИКИ) ---
+    "pulseaudio#output": {
+        "format": " OUT: {volume}%",
+        "format-muted": " OUT: Выкл",
+        "on-click": "pavucontrol",
+        // Жестко выставляем шаг в 5% на внутреннем уровне ядра Waybar
+        "scroll-step": 5,
+        "max-volume": 100,
+        // КРИТИЧНО: Заставляет панель склеивать мелкие тики мыши обратно в один четкий шаг
+        "smooth-scrolling-threshold": 1.0,
+        "tooltip": false
+    },
+
+
+    // --- УПРАВЛЕНИЕ МИКРОФОНОМ (НЕЗАВИСИМОЕ) ---
+    "pulseaudio#microphone": {
+        "format": "  INP: {format_source}",
+        "format-source": "Вкл",
+        "format-source-muted": "Выкл",
+        "on-click": "pavucontrol"
+    },
+
+    "bluetooth": {
+        "format": "  Bluetooth  ",
+        "format-disabled": "🔸 BT Выкл  ",
+        "format-connected": "🔹 BT: {num_connections}  ",
+        "on-click": "blueman-manager"
+    },
+
+    //--- КНОПКА ПИТАНИЯ (БРОНЕБОЙНАЯ КОМАНДА ВЫХОДА) ---
+    "custom/power": {
+        "format": "⏻ ",
+        "on-click": "~/.config/waybar/scripts/powermenu.sh",
+        "tooltip": false
+    },
+
+    "custom/launcher": {
+        "format": " 󰣇 ",           // Стильная иконка меню приложений
+        "tooltip": false, 
+        "on-click": "wofi --show drun --allow-images --insensitive"
+        
+    },
+
+    "custom/add_workspace": {
+        "format": " + ", 
+        "on-click": "hyprctl dispatch workspace $(hyprctl workspaces -j | jq '[.[].id] | max + 1')",
+        "tooltip": false
+    },
+
+    "backlight": {
+        "device": "intel_backlight", // или amdgpu_bl0 в зависимости от процессора
+        "format": "  LIGHT:{percent}%",
+        "scroll-step": 5,
+         //При клике открывается встроенный ползунок яркости через системный интерфейс gnome/mate (если установлен)
+        // либо графическая панель управления утилиты blugon / brightness-controller
+        "on-click": "brightness-controller || generic-bl-slider" 
+    },
+
+    "custom/volume": {
+        "exec": "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print sprintf(\"%.0f\", $2 * 100)}'",
+        "interval": 0,
+        "format": " OUT: {}%",
+        "on-click": "pavucontrol",
+        // Умный скролл: высчитывает текущую громкость, округляет до кратного 5 и жестко ставит (+5% / -5%)
+        "on-scroll-up": "sh -c 'V=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk \"{print int(\\$2*100)}\"); NEW=$(( ((V + 4) / 5) * 5 + 5 )); if [ $NEW -le 100 ]; then wpctl set-volume @DEFAULT_AUDIO_SINK@ ${NEW}%; fi'",
+        "on-scroll-down": "sh -c 'V=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk \"{print int(\\$2*100)}\"); NEW=$(( ((V - 1) / 5) * 5 - 5 )); if [ $NEW -ge 0 ]; then wpctl set-volume @DEFAULT_AUDIO_SINK@ ${NEW}%; else wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%; fi'",
+        "tooltip": false
+    },
+
+    "custom/usb": {
+        // Считываем только РЕАЛЬНО смонтированные диски, отсекая пустые папки
+        "exec": "findmnt -l -o TARGET | grep '/run/media/rdf-2041/' | awk -F'/' '{print $5}' | sort -u | paste -sd ' | ' -",
+        "interval": 2,
+        "interval": 2,
+        "format": "  USB: {}",
+        "format-none": "",
+        "return-type": "json",
+        "on-click": "dolphin /run/media/rdf-2041/",
+        // ПРАВЫЙ КЛИК: Использует udiskie-umount по маске путей, что гарантирует чистое и безопасное извлечение
+        "on-click-right": "pkill dolphin; sh -c 'udiskie-umount /run/media/rdf-2041/* && notify-send \"USB-накопитель\" \"Диск безопасно извлечен!\"'"
+    },
+
+    "custom/uptime": {
+        "exec": "awk '{print int($1/3600)\":\"int(($1%3600)/60)\":\"int($1%60)}' /proc/uptime | awk -F: '{printf \"%02d:%02d:%02d\\n\", $1, $2, $3}'",
+        "interval": 1,
+        "format": " {}  ",
+        "tooltip": false
+    }
+
+}
+

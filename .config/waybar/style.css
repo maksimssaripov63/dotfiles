@@ -1,0 +1,30 @@
+* {
+    font-family: "JetBrains Mono", "JetBrains Mono NL", sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 0;
+}
+
+#custom-launcher {
+    font-size: 30px;
+    color: #00cdff;
+}
+
+#waybar {
+    background-color: rgba(26, 27, 38, 0.75); /* Темный фон с прозрачностью 75% */
+    color: #00ff00;
+    border-radius: 12px;                       /* Сильное скругление углов панели */
+    margin: 10px 10px;
+    transition: none;
+}
+
+/* Жестко задаем моноширинный шрифт для всплывающего окна календаря */
+#tooltip {
+    font-family: "JetBrains Mono", monospace;
+    background-color: rgba(26, 27, 38, 0.95); /* Глубокий темный фон */
+    border: 1px solid #313244;
+    border-radius: 8px;
+    padding: 10px;
+}
+
