@@ -10,6 +10,8 @@
     // --- Распределение модулей по позициям ---
     "modules-left": [
         "custom/launcher",
+        "custom/procs",
+        "tray",
         "hyprland/workspaces",
         "custom/add_workspace",
         "custom/usb"
@@ -189,6 +191,15 @@
       },
       "ignored-players": ["vlc"] // Игнорировать определенные плееры, если нужно
     },
+
+  "custom/procs": {
+    "format": "   ", // Иконка меню (нужен Nerd Font). Можно заменить на другую, например "" или "⚙"
+    "tooltip": true,
+    "tooltip-format": "Диспетчер процессов",
+    "on-click": "~/dotfiles/.config/waybar/scripts/process_menu.sh",
+    "interval": "once"
+}
+
 
 }
 
