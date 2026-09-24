@@ -6,7 +6,7 @@ background-opacity = 0.85
 background-blur = true
 
 # Официальное встроенное имя темы в свежих версиях (С большой буквы)
-theme = Dracula
+theme = Industry
 
 window-decoration = false
 window-padding-x = 10
