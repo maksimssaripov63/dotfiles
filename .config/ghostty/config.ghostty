@@ -1,0 +1,16 @@
+# ---- 🎨 КРИСТАЛЬНО ЧИСТЫЙ И ВАЛИДНЫЙ КОНФИГ GHOSTTY ----
+font-family = "JetBrainsMono Nerd Font"
+font-size = 13
+
+background-opacity = 0.85
+background-blur = true
+
+# Официальное встроенное имя темы в свежих версиях (С большой буквы)
+theme = Dracula
+
+window-decoration = false
+window-padding-x = 10
+window-padding-y = 10
+
+cursor-style = block
+cursor-style-blink = true
