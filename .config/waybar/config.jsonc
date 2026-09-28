@@ -12,6 +12,7 @@
         "custom/launcher",
         "custom/procs",
         "tray",
+        "custom/spaces",
         "hyprland/workspaces",
         "custom/add_workspace",
         "custom/usb"
@@ -198,7 +199,11 @@
     "tooltip-format": "Диспетчер процессов",
     "on-click": "~/dotfiles/.config/waybar/scripts/process_menu.sh",
     "interval": "once"
-}
+},
+
+  "custom/spaces": {
+    "format": " "
+  }
 
 
 }
