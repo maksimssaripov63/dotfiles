@@ -9,8 +9,8 @@ background-blur = true
 theme = Industry
 
 window-decoration = false
-window-padding-x = 10
-window-padding-y = 10
+window-padding-x = 1
+window-padding-y = 1
 
 cursor-style = block
 cursor-style-blink = true
