@@ -271,7 +271,7 @@ setopt prompt_subst
 
 alias sync-dots="~/dotfiles/sync.sh"
 
-alias gpa="cd ~/dotfiles && git add . && git commit -m \"Auto-backup: \$(date +\"%Y-%m-%d %H:%M:%S\")\" && git push -f origin main"
+alias gpa="cd ~/dotfiles && git add . && git commit -m \"Auto-backup: \$(date +\"%Y-%m-%d %H:%M:%S\")\" && git push -f origin main && cd"
 
 # быстрые команды для управления zapret
 alias zapret-config='$HOME/zapret-configs/install.sh'
