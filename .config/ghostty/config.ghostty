@@ -1,11 +1,11 @@
-# ---- 🎨 КРИСТАЛЬНО ЧИСТЫЙ И ВАЛИДНЫЙ КОНФИГ GHOSTTY ----
+# ---- 🎨 ОФИЦИАЛЬНЫЙ СТАБИЛЬНЫЙ КОНФИГ GHOSTTY ----
 font-family = "JetBrainsMono Nerd Font"
 font-size = 13
 
 background-opacity = 0.85
 background-blur = true
 
-# Официальное встроенное имя темы в свежих версиях (С большой буквы)
+# Официальное имя темы с заглавной буквы
 theme = Industry
 
 window-decoration = false
@@ -14,3 +14,8 @@ window-padding-y = 10
 
 cursor-style = block
 cursor-style-blink = true
+
+# ---- 🚀 АКТИВАЦИЯ ШЕЙДЕРА ПЛАВНОГО КУРСОРА ----
+custom-shader = /home/rdf-2041/dotfiles/.config/ghostty/ghostty-cursor-trails/boo-cursor.glsl
+custom-shader-animation = always
+window-vsync = false
