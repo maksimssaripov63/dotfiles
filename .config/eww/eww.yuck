@@ -1,0 +1,80 @@
+;; ---- 📡 СИСТЕМНЫЕ ДАТЧИКОВЫЕ ОПРОСЫ ----
+(defpoll time :interval "1s" "date '+%H:%M:%S'")
+(defpoll lang :interval "1s" "hyprctl devices -j | jq -r '.keyboards[] | select(.main == true) | .active_keymap' | sed 's/English (US)/EN/g; s/Russian/RU/g'")
+(defpoll volume :interval "1s" "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)\"%\"}'")
+(defpoll battery :interval "5s" "cat /sys/class/power_supply/BAT1/capacity 2>/dev/null || cat /sys/class/power_supply/BAT0/capacity")
+(defpoll battery_status :interval "5s" "cat /sys/class/power_supply/BAT1/status 2>/dev/null || cat /sys/class/power_supply/BAT0/status")
+(defpoll wifi :interval "5s" "nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d: -f2")
+(defpoll active_window :interval "1s" "hyprctl activewindow -j | jq -r '.title' | cut -c1-30")
+
+;; Опрос Bluetooth устройств (вытаскиваем имя подключенного гаджета вроде TW6)
+(defpoll bt_device :interval "3s" "bluetoothctl info | grep 'Name:' | cut -d' ' -f2-")
+(defpoll bt_status :interval "3s" "bluetoothctl show | grep -q 'Powered: yes' && echo 'On' || echo 'Off'")
+
+;; ---- 🧱 СТРУКТУРА БАРА ----
+(defwidget bar []
+  (centerbox :orientation "h"
+    (box :class "left-modules" :halign "start" :space-evenly false :spacing 15 (workspaces) (window_title))
+    (box :class "center-modules" :halign "center" (clock_widget))
+    (box :class "right-modules" :halign "end" (sidestuff))))
+
+;; ---- 🎨 ГРАФИЧЕСКИЕ ВИДЖЕТЫ ----
+(defwidget workspaces []
+  (box :class "workspaces" :spacing 8
+    (button :onclick "hyprctl dispatch workspace 1" "")
+    (button :onclick "hyprctl dispatch workspace 2" "")
+    (button :onclick "hyprctl dispatch workspace 3" "")
+    (button :onclick "hyprctl dispatch workspace 4" "")))
+
+(defwidget window_title []
+  (box :class "window-title" "   ${active_window == '' ? 'Desktop' : active_window}"))
+
+(defwidget clock_widget []
+  (box :class "clock" "  ${time}"))
+
+(defwidget sidestuff []
+  (box :class "sidestuff" :orientation "h" :space-evenly false :spacing 10
+    (button :class "vol" :onclick "pavucontrol &" "  ${volume}")
+    (button :class "net" :onclick "ghostty -e nmtui &" "  ${wifi == '' ? 'Offline' : wifi}")
+    ;; Кнопка Bluetooth теперь переключает (toggle) правое меню управления наушниками!
+    (button :class "blue" :onclick "eww open --toggle bluetooth_win" "")
+    (box :class "bat" "${battery_status == 'Charging' ? '⚡' : '🔋'} ${battery}%")
+    (box :class "lang" "    ${lang}")
+    (systray :pack-direction "left")))
+
+;; ----  ОВЕРЛЕЙ-МЕНЮ BLUETOOTH (ТОЧЬ-В-ТОЧЬ КАК НА СКРИНШОТЕ) ----
+(defwidget bluetooth_menu []
+  (box :class "bt-menu-bg" :orientation "v" :space-evenly false :spacing 15
+    ;; Заголовок и тумблер питания
+    (box :orientation "h" :space-evenly true
+      (label :class "bt-title" :halign "start" :text "Bluetooth")
+      (box :halign "end" :space-evenly false :spacing 10
+        (button :class "bt-toggle" :onclick "bluetoothctl power $(bluetoothctl show | grep -q 'Powered: yes' && echo off || echo on)" "${bt_status == 'On' ? '🟢' : '⚫'}")
+        (button :class "bt-refresh" :onclick "bluetoothctl scan on & sleep 5 && bluetoothctl scan off &" "↻")))
+    
+    ;; Карточка активного устройства (наушники TW6)
+    (box :class "bt-device-list" :orientation "v" :space-evenly false
+      (if :condition "${bt_device != ''}"
+        (box :orientation "h" :space-evenly false :spacing 12 :class "bt-item-active"
+          (label :text "🎧" :font-size "20px")
+          (box :orientation "v" :halign "start"
+            (label :class "bt-device-name" :text "${bt_device}")
+            (label :class "bt-device-status" :text "Connected")))
+        (label :class "bt-device-empty" :text "No devices connected")))))
+
+;; ---- 🖥️ ОБЪЯВЛЕНИЕ ОКON ----
+(defwindow topbar
+  :monitor 0
+  :geometry (geometry :x "0%" :y "8px" :width "99%" :height "38px" :anchor "top center")
+  :stacking "fg"
+  :exclusive true
+  :focusable false
+  (bar))
+
+;; Окно Bluetooth вылетает строго в правом верхнем углу под иконкой!
+(defwindow bluetooth_win
+  :monitor 0
+  :geometry (geometry :x "20px" :y "55px" :width "280px" :height "180px" :anchor "top right")
+  :stacking "fg"
+  (bluetooth_menu))
+
