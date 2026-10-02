@@ -13,9 +13,11 @@ window-padding-x = 1
 window-padding-y = 1
 
 cursor-style = block
-cursor-style-blink = true
+cursor-style-blink = false
+cursor-opacity = 1
 
 # ---- 🚀 АКТИВАЦИЯ ШЕЙДЕРА ПЛАВНОГО КУРСОРА ----
-custom-shader = /home/rdf-2041/dotfiles/.config/ghostty/ghostty-cursor-trails/boo-cursor.glsl
+#custom-shader = /home/rdf-2041/dotfiles/.config/ghostty/ghostty-cursor-trails/boo-cursor.glsl
+custom-shader = "~/dotfiles/.config/ghostty/shaders/cursor_glide.glsl"
 custom-shader-animation = always
 window-vsync = false
