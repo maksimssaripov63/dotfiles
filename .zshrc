@@ -137,7 +137,8 @@ alias ard='~/.platformio/penv/bin/pio device monitor --port /dev/ttyUSB0 --baud 
 alias ccat='batcat --style=numbers,changes --language=cpp'
 alias color_log='~/.platformio/penv/bin/pio device monitor --port /dev/ttyUSB0 --baud 9600 | batcat --language=log'
 export TERM=xterm-256color
-alias cam="sudo modprobe v4l2loopback exclusive_caps=1 card_label='OBS Virtual Video' && obs-studio --startvirtualcam & sleep 3 && qrca"
+alias cam="sudo modprobe v4l2loopback exclusive_caps=1 card_label='OBS Virtual Video' && obs --startvirtualcam & sleep 3 && qrca"
+
 -s() {
     local query="$*"
     if [[ -n "$query" ]]; then
@@ -178,7 +179,7 @@ alias paint='pygmentize -f terminal256 -O style=default -g'
 alias hack="python3 ~/Документы/Python/.vscode/script.py"
 
 alias ds="discord > /dev/null 2>&1 &"
-alias obs="obs-studio > /dev/null 2>&1 &"
+#alias obs="obs-studio > /dev/null 2>&1 &"
 alias phone="kdeconnect-app > /dev/null 2>&1 &"
 
 
