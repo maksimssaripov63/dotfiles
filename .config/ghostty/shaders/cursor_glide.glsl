@@ -7,8 +7,8 @@
 
 
 // --- CONFIGURATION ---
-const float DURATION   = 0.14;  // seconds for one glide
-const float BG_OPACITY = 0.85;  // your background-opacity (text-under-cursor mask threshold)
+const float DURATION   = 0.5;  // seconds for one glide
+const float BG_OPACITY = 1;  // your background-opacity (text-under-cursor mask threshold)
 const float AA         = 1.0;   // edge antialiasing in pixels
 
 // sRGB -> linear: uniforms arrive as sRGB, iChannel0 and the output are linear.
