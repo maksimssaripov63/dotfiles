@@ -70,7 +70,7 @@
             "id": "v4l2_input",
             "versioned_id": "v4l2_input",
             "settings": {
-                "device_id": "/dev/video5",
+                "device_id": "/dev/video0",
                 "input": 0,
                 "pixelformat": 861030210
             },
@@ -105,7 +105,7 @@
                         "name": "Video Capture Device (V4L2)",
                         "source_uuid": "8b46b6a5-51c9-4440-840e-6654f15e459e",
                         "visible": true,
-                        "locked": false,
+                        "locked": true,
                         "rot": 0.0,
                         "scale_ref": {
                             "x": 1920.0,

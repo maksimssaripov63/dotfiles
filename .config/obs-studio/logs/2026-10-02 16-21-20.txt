@@ -1,0 +1,420 @@
+16:21:20.857: Command Line Arguments: --startvirtualcam
+16:21:20.857: Platform: Wayland
+16:21:20.857: CPU Name: 13th Gen Intel(R) Core(TM) i7-13650HX
+16:21:20.857: CPU Speed: 800.341MHz
+16:21:20.857: Physical Cores: 14, Logical Cores: 20
+16:21:20.857: Physical Memory: 15644MB Total, 8015MB Free
+16:21:20.857: Kernel Version: Linux 7.2.6-arch2-1
+16:21:20.857: Distribution: "Arch Linux" Unknown
+16:21:20.857: Desktop Environment: Hyprland (Hyprland)
+16:21:20.857: Session Type: wayland
+16:21:20.858: Current Date/Time: 2026-10-02, 04:21:20 PM
+16:21:20.859: Browser Hardware Acceleration: true
+16:21:20.859: Qt Version: 6.11.2 (runtime), 6.11.1 (compiled)
+16:21:20.859: Portable mode: false
+16:21:20.890: OBS 32.2.2 (linux)
+16:21:20.890: ---------------------------------
+16:21:20.891: ---------------------------------
+16:21:20.891: audio settings reset:
+16:21:20.891: 	samples per sec: 48000
+16:21:20.891: 	speakers:        2
+16:21:20.891: 	max buffering:   960 milliseconds
+16:21:20.891: 	buffering type:  dynamically increasing
+16:21:20.894: ---------------------------------
+16:21:20.894: Initializing OpenGL...
+16:21:20.894: Using EGL/Wayland
+16:21:20.927: Initialized EGL 1.5
+16:21:20.937: Loading up OpenGL on adapter Intel Mesa Intel(R) Graphics (RPL-S)
+16:21:20.937: OpenGL loaded successfully, version 4.6 (Core Profile) Mesa 26.2.3-arch1.1, shading language 4.60
+16:21:20.960: ---------------------------------
+16:21:20.960: video settings reset:
+16:21:20.960: 	base resolution:   1920x1080
+16:21:20.960: 	output resolution: 1280x720
+16:21:20.960: 	downscale filter:  Bicubic
+16:21:20.960: 	fps:               30/1
+16:21:20.960: 	format:            NV12
+16:21:20.960: 	YUV mode:          Rec. 709/Partial
+16:21:20.961: NV12 texture support enabled
+16:21:20.961: P010 texture support not available
+16:21:20.966: Audio monitoring device:
+16:21:20.966: 	name: Default
+16:21:20.966: 	id: default
+16:21:20.967: ---------------------------------
+16:21:20.968: Failed to load 'en-US' text for module: 'decklink-captions.so'
+16:21:20.969: Failed to load 'en-US' text for module: 'decklink-output-ui.so'
+16:21:20.971: A DeckLink iterator could not be created.  The DeckLink drivers may not be installed
+16:21:20.971: Failed to initialize module 'decklink.so'
+16:21:21.057: [pipewire] No capture sources available
+16:21:21.118: [obs-browser]: Version 2.26.9
+16:21:21.118: [obs-browser]: CEF Version 152.0.7977.83 (runtime), 151.3.17+gf059e67+chromium-151.0.7922.138 (compiled)
+16:21:21.155: LIBVA_DRIVER_NAME variable is set, this could prevent FFmpeg VAAPI from working correctly
+16:21:21.510: VAAPI: API version 1.24
+16:21:21.734: FFmpeg VAAPI H264 encoding not supported
+16:21:22.086: FFmpeg VAAPI AV1 encoding not supported
+16:21:22.440: FFmpeg VAAPI HEVC encoding not supported
+16:21:22.585: [obs-nvenc] NVENC version: 13.1 (compiled) / 13.1 (driver), CUDA driver version: 13.40, AV1 supported: true
+16:21:23.294: [obs-websocket] [obs_module_load] you can haz websockets (Version: 5.7.4 | RPC Version: 1)
+16:21:23.294: [obs-websocket] [obs_module_load] Qt version (compile-time): 6.11.1 | Qt version (run-time): 6.11.2
+16:21:23.294: [obs-websocket] [obs_module_load] Linked ASIO Version: 103802
+16:21:23.298: [obs-websocket] [obs_module_load] Module loaded.
+16:21:23.303: ---------------------------------
+16:21:23.303:   Loaded Modules:
+16:21:23.303:     text-freetype2.so
+16:21:23.303:     rtmp-services.so
+16:21:23.303:     obs-x264.so
+16:21:23.303:     obs-websocket.so
+16:21:23.303:     obs-webrtc.so
+16:21:23.303:     obs-vst.so
+16:21:23.303:     obs-transitions.so
+16:21:23.303:     obs-qsv11.so
+16:21:23.303:     obs-outputs.so
+16:21:23.303:     obs-nvenc.so
+16:21:23.303:     obs-libfdk.so
+16:21:23.303:     obs-filters.so
+16:21:23.303:     obs-ffmpeg.so
+16:21:23.303:     obs-browser.so
+16:21:23.303:     linux-v4l2.so
+16:21:23.303:     linux-pulseaudio.so
+16:21:23.303:     linux-pipewire.so
+16:21:23.303:     linux-jack.so
+16:21:23.303:     linux-capture.so
+16:21:23.303:     linux-alsa.so
+16:21:23.303:     image-source.so
+16:21:23.303:     frontend-tools.so
+16:21:23.303:     decklink-output-ui.so
+16:21:23.303:     decklink-captions.so
+16:21:23.303: ---------------------------------
+16:21:23.303: ---------------------------------
+16:21:23.303: Available Encoders:
+16:21:23.303:   Video Encoders:
+16:21:23.303: 	- ffmpeg_svt_av1 (SVT-AV1)
+16:21:23.303: 	- ffmpeg_aom_av1 (AOM AV1)
+16:21:23.303: 	- obs_nvenc_h264_tex (NVIDIA NVENC H.264)
+16:21:23.303: 	- obs_nvenc_hevc_tex (NVIDIA NVENC HEVC)
+16:21:23.303: 	- obs_nvenc_av1_tex (NVIDIA NVENC AV1)
+16:21:23.303: 	- obs_x264 (x264)
+16:21:23.303:   Audio Encoders:
+16:21:23.303: 	- ffmpeg_aac (FFmpeg AAC)
+16:21:23.303: 	- ffmpeg_opus (FFmpeg Opus)
+16:21:23.303: 	- ffmpeg_pcm_s16le (FFmpeg PCM (16-bit))
+16:21:23.303: 	- ffmpeg_pcm_s24le (FFmpeg PCM (24-bit))
+16:21:23.303: 	- ffmpeg_pcm_f32le (FFmpeg PCM (32-bit float))
+16:21:23.303: 	- ffmpeg_alac (FFmpeg ALAC (24-bit))
+16:21:23.303: 	- ffmpeg_flac (FFmpeg FLAC (16-bit))
+16:21:23.303: 	- libfdk_aac (libfdk AAC)
+16:21:23.303: ==== Startup complete ===============================================
+16:21:23.346: Failed to register with host portal QDBusError("org.freedesktop.portal.Error.Failed", "Could not register app ID: Connection already associated with an application ID")
+16:21:23.347: All scene data cleared
+16:21:23.347: ------------------------------------------------
+16:21:23.354: Device for 'Audio Output Capture' source Desktop Audio is also used for audio monitoring.
+16:21:23.354: Deduplication logic is being applied to all monitored sources.
+16:21:23.355: pulse-input: Server name: 'PulseAudio (on PipeWire 1.6.8) 15.0.0'
+16:21:23.355: pulse-input: Audio format: s16le, 48000 Hz, 2 channels
+16:21:23.355: pulse-input: Started recording from 'bluez_output.F1_7E_54_01_A3_7A.1.monitor' (default)
+16:21:23.360: pulse-am: Prevented feedback-loop in 'default'
+16:21:23.360: [Loaded global audio device]: 'Desktop Audio'
+16:21:23.360:     - monitoring: monitor and output
+16:21:23.360: pulse-input: Server name: 'PulseAudio (on PipeWire 1.6.8) 15.0.0'
+16:21:23.360: pulse-input: Audio format: float32le, 48000 Hz, 1 channels
+16:21:23.360: pulse-input: Started recording from 'bluez_input.F1:7E:54:01:A3:7A' (default)
+16:21:23.363: pulse-am: Server name: 'PulseAudio (on PipeWire 1.6.8) 15.0.0'
+16:21:23.363: pulse-am: Audio format: s16le, 48000 Hz, 2 channels
+16:21:23.363: pulse-am: Started Monitoring in 'bluez_output.F1_7E_54_01_A3_7A.1'
+16:21:23.363: [Loaded global audio device]: 'Mic/Aux'
+16:21:23.363:     - monitoring: monitor and output
+16:21:23.364: v4l2-input: Start capture from /dev/video5
+16:21:23.365: v4l2-input: Unable to set input 0
+16:21:23.365: v4l2-input: Initialization failed, errno: Inappropriate ioctl for device
+16:21:23.365: Device for 'Audio Output Capture' source Desktop Audio is also used for audio monitoring.
+16:21:23.365: Deduplication logic is being applied to all monitored sources.
+16:21:23.365: Switched to scene 'Scene'
+16:21:23.365: ------------------------------------------------
+16:21:23.365: Loaded scenes:
+16:21:23.365: - scene 'Scene':
+16:21:23.365:     - source: 'Video Capture Device (V4L2)' (v4l2_input)
+16:21:23.365: ------------------------------------------------
+16:21:23.397: Virtual camera started
+16:21:23.405: ==== Virtual Camera Start ==========================================
+16:21:23.405: Starting Virtual Camera output to Program
+16:21:23.899: adding 21 milliseconds of audio buffering, total audio buffering is now 21 milliseconds (source: Desktop Audio)
+16:21:23.899: 
+16:21:33.368: v4l2-input: /dev/video5 seems to not support video capture
+16:21:33.368: v4l2-input: /dev/video3 seems to not support video capture
+16:21:33.368: v4l2-input: /dev/video1 seems to not support video capture
+16:21:33.369: v4l2-input: Found device 'OBS Virtual Video' at /dev/video6
+16:21:33.369: v4l2-input: Found device 'USB Video: USB Video' at /dev/video4
+16:21:33.462: v4l2-input: Found device 'FHD Webcam: IR Camera' at /dev/video2
+16:21:33.462: v4l2-input: Found device 'FHD Webcam: FHD Webcam' at /dev/video0
+16:21:33.463: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:21:36.649: v4l2-input: Found input 'Camera 1' (Index 0)
+16:21:36.649: v4l2-input: Pixelformat: YUYV 4:2:2 (available)
+16:21:36.649: v4l2-input: Pixelformat: Motion-JPEG (available)
+16:21:36.649: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+16:21:36.649: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+16:21:36.649: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+16:21:36.649: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+16:21:36.649: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:21:36.665: v4l2-input: Start capture from /dev/video4
+16:21:36.666: v4l2-input: Unable to set input 0
+16:21:36.666: v4l2-input: Initialization failed, errno: Device or resource busy
+16:21:40.533: Output 'virtualcam_output': stopping
+16:21:40.533: Output 'virtualcam_output': Total frames output: 512
+16:21:40.533: Output 'virtualcam_output': Total drawn frames: 514
+16:21:40.533: ==== Virtual Camera Stop ===========================================
+16:21:40.534: Virtual camera stopped
+16:21:41.522: Virtual camera started
+16:21:41.523: ==== Virtual Camera Start ==========================================
+16:21:41.523: Starting Virtual Camera output to Program
+16:21:49.751: v4l2-input: Device /dev/video4 disconnected
+16:21:54.066: v4l2-input: Device /dev/video4 reconnected
+16:21:54.066: v4l2-input: Start capture from /dev/video4
+16:21:54.067: v4l2-input: Input: 0
+16:21:54.068: v4l2-input: Resolution: 720x576
+16:21:54.068: v4l2-input: Pixelformat: BGR3
+16:21:54.068: v4l2-input: Linesize: 2160 Bytes
+16:21:54.068: v4l2-input: Framerate: 60.00 fps
+16:21:54.069: v4l2-input: /dev/video4: select timeout set to 83333 (5x frame periods)
+16:21:54.153: v4l2-input: /dev/video4: select timed out
+16:21:54.153: v4l2-input: /dev/video4: failed to log status
+16:21:57.102: v4l2-input: /dev/video4: failed to dequeue buffer
+16:21:57.102: v4l2-input: /dev/video4: Stopped capture after 150 frames
+16:22:09.004: v4l2-input: Device /dev/video4 disconnected
+16:22:15.978: v4l2-input: Device /dev/video4 reconnected
+16:22:15.979: v4l2-input: Start capture from /dev/video4
+16:22:15.980: v4l2-input: Input: 0
+16:22:15.981: v4l2-input: Resolution: 720x576
+16:22:15.981: v4l2-input: Pixelformat: BGR3
+16:22:15.981: v4l2-input: Linesize: 2160 Bytes
+16:22:15.981: v4l2-input: Framerate: 60.00 fps
+16:22:15.982: v4l2-input: /dev/video4: select timeout set to 83333 (5x frame periods)
+16:22:16.067: v4l2-input: /dev/video4: select timed out
+16:22:16.067: v4l2-input: /dev/video4: failed to log status
+16:22:19.048: v4l2-input: /dev/video4: failed to dequeue buffer
+16:22:19.048: v4l2-input: /dev/video4: Stopped capture after 152 frames
+16:22:33.699: v4l2-input: Device /dev/video4 disconnected
+16:22:39.519: v4l2-input: /dev/video3 seems to not support video capture
+16:22:39.519: v4l2-input: /dev/video1 seems to not support video capture
+16:22:39.519: v4l2-input: Found device 'OBS Virtual Video' at /dev/video6
+16:22:39.614: v4l2-input: Found device 'FHD Webcam: IR Camera' at /dev/video2
+16:22:39.614: v4l2-input: Found device 'FHD Webcam: FHD Webcam' at /dev/video0
+16:22:42.308: v4l2-input: Device /dev/video4 reconnected
+16:22:42.308: v4l2-input: Start capture from /dev/video4
+16:22:42.308: v4l2-input: Unable to open /dev/video7
+16:22:42.309: v4l2-input: Input: 0
+16:22:42.309: v4l2-input: /dev/video3 seems to not support video capture
+16:22:42.310: v4l2-input: /dev/video1 seems to not support video capture
+16:22:42.310: v4l2-input: Resolution: 720x576
+16:22:42.310: v4l2-input: Pixelformat: BGR3
+16:22:42.310: v4l2-input: Linesize: 2160 Bytes
+16:22:42.311: v4l2-input: Found device 'OBS Virtual Video' at /dev/video6
+16:22:42.311: v4l2-input: Framerate: 60.00 fps
+16:22:42.312: v4l2-input: /dev/video4: select timeout set to 83333 (5x frame periods)
+16:22:42.312: v4l2-input: Found device 'USB Video: USB Video' at /dev/video4
+16:22:42.396: v4l2-input: /dev/video4: select timed out
+16:22:42.396: v4l2-input: /dev/video4: failed to log status
+16:22:42.408: v4l2-input: Found device 'FHD Webcam: IR Camera' at /dev/video2
+16:22:42.408: v4l2-input: Found device 'FHD Webcam: FHD Webcam' at /dev/video0
+16:22:42.409: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:22:42.409: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:22:42.409: v4l2-input: Pixelformat: YUYV 4:2:2 (available)
+16:22:42.409: v4l2-input: Pixelformat: Motion-JPEG (available)
+16:22:42.409: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+16:22:42.409: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+16:22:42.409: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+16:22:42.409: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+16:22:42.409: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:22:42.410: v4l2-input: Found input 'Camera 1' (Index 0)
+16:22:42.411: v4l2-input: Pixelformat: YUYV 4:2:2 (available)
+16:22:42.411: v4l2-input: Pixelformat: Motion-JPEG (available)
+16:22:42.411: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+16:22:42.411: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+16:22:42.411: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+16:22:42.411: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+16:22:42.411: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:22:42.424: v4l2-input: /dev/video7 seems to not support video capture
+16:22:42.424: v4l2-input: /dev/video3 seems to not support video capture
+16:22:42.424: v4l2-input: /dev/video1 seems to not support video capture
+16:22:42.424: v4l2-input: Found device 'OBS Virtual Video' at /dev/video6
+16:22:42.424: v4l2-input: Found device 'USB Video: USB Video' at /dev/video4
+16:22:42.425: v4l2-input: Found device 'FHD Webcam: IR Camera' at /dev/video2
+16:22:42.425: v4l2-input: Found device 'FHD Webcam: FHD Webcam' at /dev/video0
+16:22:42.425: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:22:42.426: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:22:42.426: v4l2-input: Pixelformat: YUYV 4:2:2 (available)
+16:22:42.426: v4l2-input: Pixelformat: Motion-JPEG (available)
+16:22:42.426: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+16:22:42.426: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+16:22:42.426: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+16:22:42.426: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+16:22:42.426: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:22:42.426: v4l2-input: Found input 'Camera 1' (Index 0)
+16:22:42.426: v4l2-input: Pixelformat: YUYV 4:2:2 (available)
+16:22:42.426: v4l2-input: Pixelformat: Motion-JPEG (available)
+16:22:42.426: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+16:22:42.426: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+16:22:42.426: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+16:22:42.426: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+16:22:42.427: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:22:45.353: v4l2-input: /dev/video4: failed to dequeue buffer
+16:22:45.353: v4l2-input: /dev/video4: Stopped capture after 151 frames
+16:22:48.232: v4l2-input: Start capture from /dev/video4
+16:22:48.294: v4l2-input: Input: 0
+16:22:48.297: v4l2-input: Resolution: 720x576
+16:22:48.297: v4l2-input: Pixelformat: YUYV
+16:22:48.297: v4l2-input: Linesize: 1440 Bytes
+16:22:48.297: v4l2-input: Framerate: 25.00 fps
+16:22:48.297: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:22:48.297: v4l2-input: /dev/video4: select timeout set to 200000 (5x frame periods)
+16:28:41.443: Output 'virtualcam_output': stopping
+16:28:41.443: Output 'virtualcam_output': Total frames output: 12597
+16:28:41.443: Output 'virtualcam_output': Total drawn frames: 12597 (12598 attempted)
+16:28:41.443: Output 'virtualcam_output': Number of lagged frames due to rendering lag/stalls: 1 (0.0%)
+16:28:41.444: ==== Virtual Camera Stop ===========================================
+16:28:41.445: Virtual camera stopped
+16:28:42.300: Virtual camera started
+16:28:42.302: ==== Virtual Camera Start ==========================================
+16:28:42.302: Starting Virtual Camera output to Program
+16:28:55.058: v4l2-input: /dev/video7 seems to not support video capture
+16:28:55.059: v4l2-input: /dev/video3 seems to not support video capture
+16:28:55.059: v4l2-input: /dev/video1 seems to not support video capture
+16:28:55.060: v4l2-input: Found device 'OBS Virtual Video' at /dev/video6
+16:28:55.060: v4l2-input: Found device 'USB Video: USB Video' at /dev/video4
+16:28:55.155: v4l2-input: Found device 'FHD Webcam: IR Camera' at /dev/video2
+16:28:55.156: v4l2-input: Found device 'FHD Webcam: FHD Webcam' at /dev/video0
+16:28:55.157: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:28:55.158: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:28:55.158: v4l2-input: Pixelformat: YUYV 4:2:2 (available)
+16:28:55.158: v4l2-input: Pixelformat: Motion-JPEG (available)
+16:28:55.158: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+16:28:55.158: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+16:28:55.158: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+16:28:55.159: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+16:28:55.160: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:28:55.160: v4l2-input: Found input 'Camera 1' (Index 0)
+16:28:55.161: v4l2-input: Pixelformat: YUYV 4:2:2 (available)
+16:28:55.161: v4l2-input: Pixelformat: Motion-JPEG (available)
+16:28:55.161: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+16:28:55.161: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+16:28:55.161: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+16:28:55.161: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+16:28:55.162: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:28:58.829: v4l2-input: /dev/video4: Stopped capture after 9233 frames
+16:28:58.830: v4l2-input: Start capture from /dev/video2
+16:28:58.886: v4l2-input: Found input 'Camera 1' (Index 0)
+16:28:58.886: v4l2-input: Input: 0
+16:28:58.927: v4l2-input: Selected video format not supported
+16:28:58.927: v4l2-input: Initialization failed, errno: Invalid argument
+16:28:58.928: v4l2-input: Pixelformat: 8-bit Greyscale (unavailable)
+16:28:58.928: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+16:28:58.928: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+16:28:58.928: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+16:28:58.928: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+16:28:58.929: v4l2-input: Stepwise and Continuous framesizes are currently hardcoded
+16:28:58.930: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:28:58.936: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:28:58.937: v4l2-input: Start capture from /dev/video2
+16:28:58.938: v4l2-input: Input: 0
+16:28:58.959: v4l2-input: Resolution: 640x360
+16:28:58.959: v4l2-input: Pixelformat: BGR3
+16:28:58.959: v4l2-input: Linesize: 1920 Bytes
+16:28:58.959: v4l2-input: Framerate: 15.00 fps
+16:28:58.959: v4l2-input: /dev/video2: select timeout set to 333333 (5x frame periods)
+16:29:36.544: v4l2-input: Found input 'Camera 1' (Index 0)
+16:29:36.545: v4l2-controls: setting default for Power Line Frequency to 1
+16:29:36.546: v4l2-controls: setting default for Auto Exposure to 3
+16:29:36.547: v4l2-input: Pixelformat: Motion-JPEG (available)
+16:29:36.547: v4l2-input: Pixelformat: YUYV 4:2:2 (available)
+16:29:36.547: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+16:29:36.547: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+16:29:36.547: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+16:29:36.547: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+16:29:36.548: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:29:36.608: v4l2-input: /dev/video2: Stopped capture after 556 frames
+16:29:36.609: v4l2-input: Start capture from /dev/video0
+16:29:36.610: v4l2-input: Input: 0
+16:29:36.636: v4l2-input: Resolution: 1920x1080
+16:29:36.636: v4l2-input: Pixelformat: BGR3
+16:29:36.636: v4l2-input: Linesize: 5760 Bytes
+16:29:36.636: v4l2-input: Framerate: 30.00 fps
+16:29:36.639: v4l2-input: /dev/video0: select timeout set to 166666 (5x frame periods)
+16:29:36.814: v4l2-input: /dev/video0: select timed out
+16:29:36.814: v4l2-input: /dev/video0: failed to log status
+16:29:57.101: v4l2-input: /dev/video7 seems to not support video capture
+16:29:57.101: v4l2-input: /dev/video3 seems to not support video capture
+16:29:57.101: v4l2-input: /dev/video1 seems to not support video capture
+16:29:57.102: v4l2-input: Found device 'OBS Virtual Video' at /dev/video6
+16:29:57.102: v4l2-input: Found device 'USB Video: USB Video' at /dev/video4
+16:29:57.102: v4l2-input: Found device 'FHD Webcam: IR Camera' at /dev/video2
+16:29:57.102: v4l2-input: Found device 'FHD Webcam: FHD Webcam' at /dev/video0
+16:29:57.102: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:29:57.103: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:29:57.103: v4l2-input: Pixelformat: Motion-JPEG (available)
+16:29:57.103: v4l2-input: Pixelformat: YUYV 4:2:2 (available)
+16:29:57.103: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+16:29:57.103: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+16:29:57.103: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+16:29:57.103: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+16:29:57.103: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:29:57.103: v4l2-input: Found input 'Camera 1' (Index 0)
+16:29:57.103: v4l2-controls: setting default for Power Line Frequency to 1
+16:29:57.103: v4l2-controls: setting default for Auto Exposure to 3
+16:29:57.103: v4l2-input: Pixelformat: Motion-JPEG (available)
+16:29:57.103: v4l2-input: Pixelformat: YUYV 4:2:2 (available)
+16:29:57.103: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+16:29:57.103: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+16:29:57.103: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+16:29:57.103: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+16:29:57.103: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:29:59.672: v4l2-input: Found input 'Camera 1' (Index 0)
+16:29:59.672: v4l2-input: Pixelformat: YUYV 4:2:2 (available)
+16:29:59.672: v4l2-input: Pixelformat: Motion-JPEG (available)
+16:29:59.672: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+16:29:59.672: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+16:29:59.672: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+16:29:59.672: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+16:29:59.672: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:29:59.685: v4l2-input: /dev/video0: Stopped capture after 677 frames
+16:29:59.686: v4l2-input: Start capture from /dev/video4
+16:29:59.687: v4l2-input: Unable to set input 0
+16:29:59.687: v4l2-input: Initialization failed, errno: Device or resource busy
+16:30:05.588: v4l2-input: Found input 'loopback' (Index 0)
+16:30:05.588: v4l2-input: Pixelformat: YUYV 4:2:2 (available)
+16:30:05.588: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+16:30:05.588: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+16:30:05.588: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+16:30:05.588: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+16:30:05.588: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:30:05.598: v4l2-input: Start capture from /dev/video6
+16:30:05.599: v4l2-input: Input: 0
+16:30:05.599: v4l2-input: Unable to set format
+16:30:05.599: v4l2-input: Initialization failed, errno: Device or resource busy
+16:30:07.632: v4l2-input: Start capture from /dev/video2
+16:30:07.708: v4l2-input: Found input 'Camera 1' (Index 0)
+16:30:07.708: v4l2-input: Input: 0
+16:30:07.729: v4l2-input: Resolution: 640x360
+16:30:07.729: v4l2-input: Pixelformat: BGR3
+16:30:07.729: v4l2-input: Linesize: 1920 Bytes
+16:30:07.729: v4l2-input: Framerate: 15.00 fps
+16:30:07.730: v4l2-input: /dev/video2: select timeout set to 333333 (5x frame periods)
+16:30:07.730: v4l2-input: Pixelformat: 8-bit Greyscale (unavailable)
+16:30:07.730: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+16:30:07.730: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+16:30:07.730: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+16:30:07.730: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+16:30:07.735: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+16:30:09.026: v4l2-input: /dev/video2: Stopped capture after 17 frames
+16:30:09.028: v4l2-input: Start capture from /dev/video4
+16:30:09.093: v4l2-input: Input: 0
+16:30:09.094: v4l2-input: Resolution: 1920x1080
+16:30:09.094: v4l2-input: Found input 'Camera 1' (Index 0)
+16:30:09.094: v4l2-input: Pixelformat: BGR3
+16:30:09.094: v4l2-input: Linesize: 5760 Bytes
+16:30:09.094: v4l2-input: Framerate: 30.00 fps
+16:30:09.098: v4l2-input: /dev/video4: select timeout set to 166666 (5x frame periods)
+16:30:09.098: v4l2-input: Pixelformat: YUYV 4:2:2 (available)
+16:30:09.098: v4l2-input: Pixelformat: Motion-JPEG (available)
+16:30:09.098: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+16:30:09.098: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+16:30:09.098: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+16:30:09.098: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+16:30:09.102: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
