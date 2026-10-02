@@ -80,11 +80,11 @@ export GTK_THEME="Adwaita:dark"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git 
-    zsh-autosuggestions 
-    sudo 
-    history 
-    zsh-syntax-highlighting 
+    git
+    zsh-autosuggestions
+    sudo
+    history
+    zsh-syntax-highlighting
     you-should-use
     dirhistory
     colored-man-pages
@@ -129,9 +129,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 eval "$(starship init zsh)"
+#eval "echo 'Dunaj-5.4'"
 export STARSHIP_CONFIG="$HOME/dotfiles/.config/starship.toml"
-
-alias gup="git add . && git commit -m \"Авто-бэкап \$(date +'%Y-%m-%d %H:%M')\" && git push origin master"
 
 alias ard='~/.platformio/penv/bin/pio device monitor --port /dev/ttyUSB0 --baud 9600'
 alias ccat='batcat --style=numbers,changes --language=cpp'
