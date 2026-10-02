@@ -7,7 +7,7 @@
 
 
 // --- CONFIGURATION ---
-const float DURATION   = 0.5;  // seconds for one glide
+const float DURATION   = 0.25;  // seconds for one glide
 const float BG_OPACITY = 1;  // your background-opacity (text-under-cursor mask threshold)
 const float AA         = 1.0;   // edge antialiasing in pixels
 
