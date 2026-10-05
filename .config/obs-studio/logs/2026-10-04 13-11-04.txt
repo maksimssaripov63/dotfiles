@@ -1,0 +1,167 @@
+13:11:04.316: Command Line Arguments: --startvirtualcam
+13:11:04.316: Platform: Wayland
+13:11:04.316: CPU Name: 13th Gen Intel(R) Core(TM) i7-13650HX
+13:11:04.316: CPU Speed: 800.000MHz
+13:11:04.317: Physical Cores: 14, Logical Cores: 20
+13:11:04.317: Physical Memory: 15644MB Total, 8637MB Free
+13:11:04.317: Kernel Version: Linux 7.2.6-arch2-1
+13:11:04.317: Distribution: "Arch Linux" Unknown
+13:11:04.317: Desktop Environment: Hyprland (Hyprland)
+13:11:04.317: Session Type: wayland
+13:11:04.318: Current Date/Time: 2026-10-04, 01:11:04 PM
+13:11:04.318: Browser Hardware Acceleration: true
+13:11:04.318: Qt Version: 6.11.2 (runtime), 6.11.1 (compiled)
+13:11:04.318: Portable mode: false
+13:11:04.336: OBS 32.2.2 (linux)
+13:11:04.336: ---------------------------------
+13:11:04.337: ---------------------------------
+13:11:04.337: audio settings reset:
+13:11:04.337: 	samples per sec: 48000
+13:11:04.337: 	speakers:        2
+13:11:04.337: 	max buffering:   960 milliseconds
+13:11:04.337: 	buffering type:  dynamically increasing
+13:11:04.338: ---------------------------------
+13:11:04.338: Initializing OpenGL...
+13:11:04.338: Using EGL/Wayland
+13:11:04.367: Initialized EGL 1.5
+13:11:04.376: Loading up OpenGL on adapter Intel Mesa Intel(R) Graphics (RPL-S)
+13:11:04.376: OpenGL loaded successfully, version 4.6 (Core Profile) Mesa 26.2.3-arch1.1, shading language 4.60
+13:11:04.395: ---------------------------------
+13:11:04.395: video settings reset:
+13:11:04.395: 	base resolution:   1920x1080
+13:11:04.395: 	output resolution: 1280x720
+13:11:04.395: 	downscale filter:  Bicubic
+13:11:04.395: 	fps:               30/1
+13:11:04.395: 	format:            NV12
+13:11:04.395: 	YUV mode:          Rec. 709/Partial
+13:11:04.395: NV12 texture support enabled
+13:11:04.395: P010 texture support not available
+13:11:04.399: Audio monitoring device:
+13:11:04.399: 	name: Default
+13:11:04.399: 	id: default
+13:11:04.400: ---------------------------------
+13:11:04.401: Failed to load 'en-US' text for module: 'decklink-captions.so'
+13:11:04.402: Failed to load 'en-US' text for module: 'decklink-output-ui.so'
+13:11:04.402: A DeckLink iterator could not be created.  The DeckLink drivers may not be installed
+13:11:04.402: Failed to initialize module 'decklink.so'
+13:11:04.482: [pipewire] No capture sources available
+13:11:04.497: [obs-browser]: Version 2.26.9
+13:11:04.497: [obs-browser]: CEF Version 152.0.7977.83 (runtime), 151.3.17+gf059e67+chromium-151.0.7922.138 (compiled)
+13:11:04.509: LIBVA_DRIVER_NAME variable is set, this could prevent FFmpeg VAAPI from working correctly
+13:11:04.849: VAAPI: API version 1.24
+13:11:05.068: FFmpeg VAAPI H264 encoding not supported
+13:11:05.407: FFmpeg VAAPI AV1 encoding not supported
+13:11:05.739: FFmpeg VAAPI HEVC encoding not supported
+13:11:05.860: [obs-nvenc] NVENC version: 13.1 (compiled) / 13.1 (driver), CUDA driver version: 13.40, AV1 supported: true
+13:11:06.550: [obs-websocket] [obs_module_load] you can haz websockets (Version: 5.7.4 | RPC Version: 1)
+13:11:06.550: [obs-websocket] [obs_module_load] Qt version (compile-time): 6.11.1 | Qt version (run-time): 6.11.2
+13:11:06.550: [obs-websocket] [obs_module_load] Linked ASIO Version: 103802
+13:11:06.552: [obs-websocket] [obs_module_load] Module loaded.
+13:11:06.554: ---------------------------------
+13:11:06.554:   Loaded Modules:
+13:11:06.554:     text-freetype2.so
+13:11:06.554:     rtmp-services.so
+13:11:06.554:     obs-x264.so
+13:11:06.554:     obs-websocket.so
+13:11:06.554:     obs-webrtc.so
+13:11:06.554:     obs-vst.so
+13:11:06.554:     obs-transitions.so
+13:11:06.554:     obs-qsv11.so
+13:11:06.554:     obs-outputs.so
+13:11:06.554:     obs-nvenc.so
+13:11:06.554:     obs-libfdk.so
+13:11:06.554:     obs-filters.so
+13:11:06.554:     obs-ffmpeg.so
+13:11:06.554:     obs-browser.so
+13:11:06.554:     linux-v4l2.so
+13:11:06.554:     linux-pulseaudio.so
+13:11:06.554:     linux-pipewire.so
+13:11:06.554:     linux-jack.so
+13:11:06.554:     linux-capture.so
+13:11:06.554:     linux-alsa.so
+13:11:06.554:     image-source.so
+13:11:06.554:     frontend-tools.so
+13:11:06.554:     decklink-output-ui.so
+13:11:06.554:     decklink-captions.so
+13:11:06.554: ---------------------------------
+13:11:06.555: ---------------------------------
+13:11:06.555: Available Encoders:
+13:11:06.555:   Video Encoders:
+13:11:06.555: 	- ffmpeg_svt_av1 (SVT-AV1)
+13:11:06.555: 	- ffmpeg_aom_av1 (AOM AV1)
+13:11:06.555: 	- obs_nvenc_h264_tex (NVIDIA NVENC H.264)
+13:11:06.555: 	- obs_nvenc_hevc_tex (NVIDIA NVENC HEVC)
+13:11:06.555: 	- obs_nvenc_av1_tex (NVIDIA NVENC AV1)
+13:11:06.555: 	- obs_x264 (x264)
+13:11:06.555:   Audio Encoders:
+13:11:06.555: 	- ffmpeg_aac (FFmpeg AAC)
+13:11:06.555: 	- ffmpeg_opus (FFmpeg Opus)
+13:11:06.555: 	- ffmpeg_pcm_s16le (FFmpeg PCM (16-bit))
+13:11:06.555: 	- ffmpeg_pcm_s24le (FFmpeg PCM (24-bit))
+13:11:06.555: 	- ffmpeg_pcm_f32le (FFmpeg PCM (32-bit float))
+13:11:06.555: 	- ffmpeg_alac (FFmpeg ALAC (24-bit))
+13:11:06.555: 	- ffmpeg_flac (FFmpeg FLAC (16-bit))
+13:11:06.555: 	- libfdk_aac (libfdk AAC)
+13:11:06.555: ==== Startup complete ===============================================
+13:11:06.578: Failed to register with host portal QDBusError("org.freedesktop.portal.Error.Failed", "Could not register app ID: Connection already associated with an application ID")
+13:11:06.578: All scene data cleared
+13:11:06.578: ------------------------------------------------
+13:11:06.582: Device for 'Audio Output Capture' source Desktop Audio is also used for audio monitoring.
+13:11:06.582: Deduplication logic is being applied to all monitored sources.
+13:11:06.582: pulse-input: Server name: 'PulseAudio (on PipeWire 1.6.8) 15.0.0'
+13:11:06.582: pulse-input: Audio format: float32le, 48000 Hz, 2 channels
+13:11:06.582: pulse-input: Started recording from 'easyeffects_sink.monitor' (default)
+13:11:06.585: pulse-am: Prevented feedback-loop in 'default'
+13:11:06.585: [Loaded global audio device]: 'Desktop Audio'
+13:11:06.585:     - monitoring: monitor and output
+13:11:06.585: pulse-input: Server name: 'PulseAudio (on PipeWire 1.6.8) 15.0.0'
+13:11:06.585: pulse-input: Audio format: s16le, 48000 Hz, 2 channels
+13:11:06.585: pulse-input: Started recording from 'alsa_input.usb-MACROSILICON_USB_Video_20200909-02.analog-stereo' (default)
+13:11:06.590: pulse-am: Server name: 'PulseAudio (on PipeWire 1.6.8) 15.0.0'
+13:11:06.591: pulse-am: Audio format: float32le, 48000 Hz, 2 channels
+13:11:06.591: pulse-am: Started Monitoring in 'easyeffects_sink'
+13:11:06.591: [Loaded global audio device]: 'Mic/Aux'
+13:11:06.591:     - monitoring: monitor and output
+13:11:06.591: v4l2-input: Start capture from /dev/video5
+13:11:06.592: v4l2-input: Input: 0
+13:11:06.593: v4l2-input: Resolution: 720x576
+13:11:06.593: v4l2-input: Pixelformat: BGR3
+13:11:06.593: v4l2-input: Linesize: 2160 Bytes
+13:11:06.593: v4l2-input: Framerate: 60.00 fps
+13:11:06.593: v4l2-input: /dev/video5: select timeout set to 83333 (5x frame periods)
+13:11:06.594: Switched to scene 'Scene'
+13:11:06.594: ------------------------------------------------
+13:11:06.594: Loaded scenes:
+13:11:06.594: - scene 'Scene':
+13:11:06.594:     - source: 'Video Capture Device (V4L2)' (v4l2_input)
+13:11:06.594: ------------------------------------------------
+13:11:06.603: Device for 'Audio Output Capture' source Desktop Audio is also used for audio monitoring.
+13:11:06.603: Deduplication logic is being applied to all monitored sources.
+13:11:06.621: Virtual camera started
+13:11:06.627: ==== Virtual Camera Start ==========================================
+13:11:06.628: Starting Virtual Camera output to Program
+13:11:07.132: adding 21 milliseconds of audio buffering, total audio buffering is now 21 milliseconds (source: Desktop Audio)
+13:11:07.132: 
+13:17:34.844: adding 21 milliseconds of audio buffering, total audio buffering is now 42 milliseconds (source: Mic/Aux)
+13:17:34.844: 
+13:33:22.977: v4l2-input: /dev/video5: failed to dequeue buffer
+13:33:22.977: v4l2-input: /dev/video5: Stopped capture after 79559 frames
+13:33:22.977: v4l2-helpers: unable to stop stream
+13:33:23.086: v4l2-input: Device /dev/video5 disconnected
+13:37:15.345: ==== Shutting down ==================================================
+13:37:15.345: Output 'virtualcam_output': stopping
+13:37:15.345: Output 'virtualcam_output': Total frames output: 47061
+13:37:15.345: Output 'virtualcam_output': Total drawn frames: 46995 (47062 attempted)
+13:37:15.345: Output 'virtualcam_output': Number of lagged frames due to rendering lag/stalls: 67 (0.1%)
+13:37:15.346: ==== Virtual Camera Stop ===========================================
+13:37:15.347: Virtual camera stopped
+13:37:15.352: pulse-input: Stopped recording from 'easyeffects_sink.monitor'
+13:37:15.352: pulse-input: Got 62746 packets with 75295200 frames
+13:37:15.352: Deduplication logic stopped.
+13:37:15.352: pulse-input: Stopped recording from 'alsa_input.usb-MACROSILICON_USB_Video_20200909-02.analog-stereo'
+13:37:15.352: pulse-input: Got 62747 packets with 75296400 frames
+13:37:15.352: pulse-am: Stopped Monitoring in 'easyeffects_sink'
+13:37:15.352: pulse-am: Got 62727 packets with 75272400 frames
+13:37:15.380: All scene data cleared
+13:37:15.380: ------------------------------------------------
+13:37:15.380: The Wayland connection broke. Did the Wayland compositor die?

@@ -70,7 +70,7 @@
             "id": "v4l2_input",
             "versioned_id": "v4l2_input",
             "settings": {
-                "device_id": "/dev/video4",
+                "device_id": "/dev/video5",
                 "input": 0,
                 "pixelformat": 861030210
             },
