@@ -1,3 +1,6 @@
-2026/09/20-14:45:08.886 5 Reusing MANIFEST /home/rdf-2041/.config/chromium/Default/Local Storage/leveldb/MANIFEST-000001
-2026/09/20-14:45:08.886 5 Recovering log #3
-2026/09/20-14:45:08.886 5 Reusing old log /home/rdf-2041/.config/chromium/Default/Local Storage/leveldb/000003.log 
+2026/09/20-14:50:13.998 5 Reusing MANIFEST /home/rdf-2041/.config/chromium/Default/Local Storage/leveldb/MANIFEST-000001
+2026/09/20-14:50:13.999 5 Recovering log #3
+2026/09/20-14:50:13.999 5 Reusing old log /home/rdf-2041/.config/chromium/Default/Local Storage/leveldb/000003.log 
+2026/09/20-14:58:36.914 7 Level-0 table #5: started
+2026/09/20-14:58:36.963 7 Level-0 table #5: 79001 bytes OK
+2026/09/20-14:58:36.969 7 Delete type=0 #3
