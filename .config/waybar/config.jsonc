@@ -5,7 +5,7 @@
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
-    "height": 34,
+    "height": 20,
 
     // --- Распределение модулей по позициям ---
     "modules-left": [
@@ -15,6 +15,7 @@
         "custom/spaces",
         "hyprland/workspaces",
         "custom/add_workspace",
+        //"hyprland/window",
         "custom/usb"
     ],
     
@@ -125,9 +126,10 @@
 
     "custom/launcher": {
         "format": " 󰣇 ",           // Стильная иконка меню приложений
-        "tooltip": false, 
-        "on-click": "wofi --show drun --allow-images --insensitive"
-        
+        //"tooltip": true, 
+        "exec": "hyprctl activewindow -j | jq -r '.title' 2>/dev/null",
+        "on-click": "wofi --show drun --allow-images --insensitive",
+        "tooltip-format": "<span font='9' rise='-4444'>{}</span>"
     },
 
     "custom/add_workspace": {
@@ -194,7 +196,7 @@
     },
 
   "custom/procs": {
-    "format": "   ", // Иконка меню (нужен Nerd Font). Можно заменить на другую, например "" или "⚙"
+    "format": "   ", // Иконка меню (нужен Nerd Font). Можно заменить на другую, например "" или "⚙"
     "tooltip": true,
     "tooltip-format": "Диспетчер процессов",
     "on-click": "~/dotfiles/.config/waybar/scripts/process_menu.sh",
@@ -203,8 +205,12 @@
 
   "custom/spaces": {
     "format": " "
-  }
+  },
 
+  "hyprland/window": {
+    //"format": "{}"   // <--- это значение по умолчанию
+    "format": "<span font='9' rise='-4444'>{}</span>"
+  }
 
 }
 
