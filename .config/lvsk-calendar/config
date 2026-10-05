@@ -1,0 +1,90 @@
+# lvsk-calendar Configuration
+
+# ============================================================================
+# COLOR SCHEME
+# ============================================================================
+# Available: monochrome (default), pastel, nord, dracula, gruvbox
+color_scheme=monochrome
+
+# ============================================================================
+# BACKGROUND ILLUSTRATION
+# ============================================================================
+# Available by default: orbital (default), minimal, stars, none
+# (plain names only - the value is a file name inside the backgrounds dir)
+background_style=orbital
+
+# All backgrounds are in: ~/.config/lvsk-calendar/backgrounds/
+# You can edit them directly or create new ones!
+# To create a custom background:
+#   1. Copy an existing: cp ~/.config/lvsk-calendar/backgrounds/orbital.sh ~/.config/lvsk-calendar/backgrounds/custom.sh
+#   2. Edit it: nvim ~/.config/lvsk-calendar/backgrounds/custom.sh
+#   3. Use it: background_style=custom
+
+# ============================================================================
+# DIMENSIONS
+# ============================================================================
+# Customize the width of UI components
+header_frame_width=40
+footer_frame_width=52
+calendar_grid_width=38
+
+# ============================================================================
+# BEHAVIOR
+# ============================================================================
+# Skip splash screen on startup (true/false)
+skip_splash=false
+
+# ============================================================================
+# HOLIDAYS
+# ============================================================================
+# Enable public holidays display (true/false)
+holidays_enabled=true
+
+# Country code for holidays (2-letter ISO code, e.g., BR, US, DE)
+# country_code=BR
+
+# ============================================================================
+# EVENTS
+# ============================================================================
+# Enable user-created events (true/false). Press 'a' to add, 'e' to edit,
+# 'd' to delete an event on the selected day. Events are saved locally to:
+#   ~/.local/share/lvsk-calendar/events.tsv
+events_enabled=true
+
+# ============================================================================
+# ADVANCED: CUSTOM COLORS
+# ============================================================================
+# Override individual colors using hex (#RRGGBB) or ANSI 256 codes (0-255)
+#
+# color_base=#E0E0E0
+# color_base_dim=#BCBCBC
+# color_base_dimmer=#8A8A8A
+# color_accent=#EEEEEE
+# color_accent_bright=#FFFFFF
+# color_subtle=#6C6C6C
+# color_highlight=#FFFFFF
+# color_bg=236              # color used by background illustrations
+
+# ============================================================================
+# ADVANCED: CUSTOM CHARACTERS
+# ============================================================================
+# You can override individual characters for borders and indicators.
+# Values must be exactly one character so the grid stays aligned.
+# Uncomment and customize as needed:
+#
+# char_h=─                  # horizontal border
+# char_v=│                  # vertical border
+# char_tl=╭                 # top-left corner
+# char_tr=╮                 # top-right corner
+# char_bl=╰                 # bottom-left corner
+# char_br=╯                 # bottom-right corner
+# char_v_light=┆            # week number separator
+# char_dot=·                # empty cells / weekend marker
+# char_circle=○             # today marker
+# char_diamond=◆            # selected day marker
+# char_star=★               # holiday marker
+# char_bullet=•             # footer hint separator
+# char_event=▪              # marker for days with events
+
+# Country code for public holidays (2-letter ISO code)
+country_code=RU

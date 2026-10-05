@@ -24,6 +24,7 @@
         "custom/uptime",
         "battery",
         "clock",
+        "custom/calendar",
         "custom/language"
     ],
     
@@ -54,11 +55,18 @@
 
     "clock": {
         "interval": 1,
-        "format": "  {:%H:%M:%S  |  %d.%m.%Y (%A)}",
+        "format": " {:%H:%M:%S  󰃭 %d.%m.%Y (%A)}",
+        "on-click": "gnome-calendar",
         "tooltip": false // Полностью отключаем капризный встроенный тултип, чтобы он не мешал
         // ЛЕВЫЙ КЛИК: Открывает календарь, если он закрыт, или мгновенно прячет его, если он уже на экране
         //"on-click": "pkill yad || yad --calendar --width=250 --height=200 --undecorated --fixed --posx=830 --posy=45 --close-on-unfocus"
     },
+
+  "custom/calendar": {
+    "format": "",
+    "on-click": "lvsk-calendar-launcher",
+    "tooltip-format": "Click to open calendar"
+  },
 
 
     "custom/language": {
