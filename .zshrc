@@ -277,8 +277,8 @@ alias gpa="cd ~/dotfiles && git add . && git commit -m \"Auto-backup: \$(date +\
 alias zapret-config='$HOME/zapret-configs/install.sh'
 alias zapret-utils='$HOME/zapret-configs/utils-zapret.sh'
 
-alias Dunaj="~/Documents/PlatformIO/Dunaj-5.2"
-alias gpad="cd ~/Documents/PlatformIO/Dunaj-5.2 && git add . && git commit -m \"Auto-backup: \$(date +\"%Y-%m-%d %H:%M:%S\")\" && git push -f origin master"
+alias Dunaj="~/Documents/PlatformIO/Dunaj && figlet -f slant 'Dunaj - 6.1 '"
+alias gpad="cd ~/Documents/PlatformIO/Dunaj && git add . && git commit -m \"Auto-backup: \$(date +\"%Y-%m-%d %H:%M:%S\")\" && git push -f origin master"
 
 alias msoffice="firefox 'https://onedrive.live.com/' > /dev/null 2>&1 &"
 
