@@ -47,3 +47,15 @@ vim.keymap.set("n", "<leader>pc", function()
     desc = "PlatformIO: Clean Project",
   })
 end, { desc = "PlatformIO: Clean Whole Project" })
+
+-- 4. 📡 [Пробел + p + m] — ОТКРЫТЬ МОНИТОР ПОСЛЕДОВАТЕЛЬНОГО ПОРТА (Monitor)
+vim.keymap.set("n", "<leader>pm", function()
+  LazyVim.terminal(
+    -- Вызываем монитор порта PlatformIO Core через фиксированную скорость 9600 бод
+    { "pio", "device", "monitor", "-b", "9600" },
+    {
+      ctrl_space = true,
+      desc = "PlatformIO: Serial Monitor",
+    }
+  )
+end, { desc = "PlatformIO: Open Serial Monitor" })

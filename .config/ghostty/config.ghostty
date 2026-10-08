@@ -18,6 +18,7 @@ cursor-opacity = 1
 
 # ---- 🚀 АКТИВАЦИЯ ШЕЙДЕРА ПЛАВНОГО КУРСОРА ----
 #custom-shader = /home/rdf-2041/dotfiles/.config/ghostty/ghostty-cursor-trails/boo-cursor.glsl
-custom-shader = "~/dotfiles/.config/ghostty/shaders/cursor_glide.glsl"
+#custom-shader = "~/dotfiles/.config/ghostty/shaders/cursor_glide.glsl"
+custom-shader = "~/dotfiles/.config/ghostty/shaders/super.glsl"
 custom-shader-animation = always
 window-vsync = false
