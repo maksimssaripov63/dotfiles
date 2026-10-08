@@ -2,8 +2,8 @@
 // Настройки взяты напрямую из ваших файлов
 const float DURATION         = 0.35;  // Время скольжения из cursor_glide
 const float BG_OPACITY       = 1.0;   // Непрозрачность текста под курсором
-const float AA               = 1.0;   // Сглаживание краев курсора
-const float SMEAR_BASE_ALPHA = 0.85;  // Базовая прозрачность хвоста из boo-cursor
+const float AA               = 0.0;   // Сглаживание краев курсора
+const float SMEAR_BASE_ALPHA = 1;  // Базовая прозрачность хвоста из boo-cursor
 
 // Вспомогательные функции трансформации цвета и координат
 vec3 sRGBToLinear(vec3 c) {
