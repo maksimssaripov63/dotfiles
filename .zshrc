@@ -286,3 +286,7 @@ alias l='lsd -l'
 alias la='lsd -a'
 alias lla='lsd -la'
 alias lt='lsd --tree'
+
+# ---- 🛸 ОПТИМИЗИРОВАННЫЙ ЗАПУСК 3D-СТУДИИ BLENDER (60+ FPS) ----
+alias bld="WAYLAND_DISPLAY= __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia blender &"
+
