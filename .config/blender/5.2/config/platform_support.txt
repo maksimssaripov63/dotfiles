@@ -1,0 +1,3 @@
+{NVIDIA Corporation/NVIDIA GeForce RTX 4060 Laptop GPU/PCIe/SSE2/4.6.0 NVIDIA 615.71.09}=SUPPORTED
+{Intel/Mesa Intel(R) Graphics (RPL-S)/4.6 (Core Profile) Mesa 26.2.3-arch1.1}=SUPPORTED
+{Mesa/llvmpipe (LLVM 22.1.8, 256 bits)/4.6 (Core Profile) Mesa 26.2.3-arch1.1}=SUPPORTED
