@@ -289,6 +289,23 @@ alias la='lsd -a'
 alias lla='lsd -la'
 alias lt='lsd --tree'
 
-# ---- 🛸 ОПТИМИЗИРОВАННЫЙ ЗАПУСК 3D-СТУДИИ BLENDER (60+ FPS) ----
 alias bld="WAYLAND_DISPLAY= __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia blender &"
+
+add_app() {
+    local name="$1"
+    local cmd="$2"
+    # Насильно прописываем системный путь для tr и echo
+    local filename=$(/usr/bin/echo "$name" | /usr/bin/tr '[:upper:]' '[:lower:]' | /usr/bin/tr ' ' '-')
+    local path="$HOME/.local/share/applications/${filename}.desktop"
+
+    # Вызываем mkdir строго по абсолютному пути
+    /usr/bin/mkdir -p "$HOME/.local/share/applications"
+
+    # Вызываем echo строго по абсолютному пути
+    /usr/bin/echo -e "[Desktop Entry]\nType=Application\nName=$name\nExec=$cmd\nIcon=blender\nTerminal=false\nCategories=Development;Graphics;" > "$path"
+
+    /usr/bin/echo "🎯 Ярлык для '$name' успешно создан! Проверяйте в Rofi (Win + Space)."
+}
+
+
 
