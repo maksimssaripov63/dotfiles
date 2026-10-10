@@ -1,0 +1,41 @@
+return {
+  -- 🥇 Насильно ставим и настраиваем главный плагин конфигурации LSP
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "Saghen/blink.cmp", -- Явно указываем ваш реактивный движок автодополнения!
+    },
+    config = function()
+      -- Инициализируем менеджеры автоматической установки серверов
+      require("mason").setup()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "clangd" }, -- Автоматически проверит и накатит сервер для C++
+      })
+
+      -- Интегрируем возможности вашего нового движка blink.cmp
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+      -- 🚀 Силовой запуск clangd с явным включением подписей параметров!
+      require("lspconfig").clangd.setup({
+        capabilities = capabilities,
+        init_options = {
+          -- Этот скрытый флаг заставит clangd генерировать виртуальный текст
+          customInlayHints = true,
+        },
+        settings = {
+          -- Принудительно включаем отображение подписей в коде
+          clangd = {
+            InlayHints = {
+              Designators = true,
+              Enabled = true,
+              ParameterNames = true,
+              DeducedTypes = true,
+            },
+          },
+        },
+      })
+    end,
+  },
+}

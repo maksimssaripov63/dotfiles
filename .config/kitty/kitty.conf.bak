@@ -1,0 +1,9 @@
+font_family Sergamon
+font_size   11.0
+
+
+cursor_shape beam
+cursor_trail 1
+
+disable_ligatures never
+

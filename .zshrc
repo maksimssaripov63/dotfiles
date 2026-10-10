@@ -169,7 +169,6 @@ alias zshrc="nvim ~/dotfiles/.zshrc"
 
 zstyle ':completion:*' menu select
 
-alias music="firefox 'https://music.yandex.ru/' >/dev/null 2>&1 &"
 alias tg="telegram-desktop > /dev/null 2>&1 &"
 alias vk="firefox 'https://vk.ru/feed'"
 
