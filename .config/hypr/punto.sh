@@ -1,20 +1,9 @@
 #!/bin/bash
-# Имитируем нажатие Ctrl+Backspace, чтобы стереть неверное слово
-hyprctl dispatch sendshortcut "CTRL, BackSpace, active"
+hyprctl dispatch pass "CTRL_SHIFT, left"
+hyprctl dispatch pass "CTRL, C"
+hyprctl dispatch pass ", BackSpace"
 sleep 0.05
-
-# Получаем последний набранный текст из буфера и меняем буквы
-text=$(wl-paste --primary 2>/dev/null || wl-paste 2>/dev/null)
-
-# Словари символов
-en="qwertyuiop[]asdfghjkl;'zxcvbnm,.QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>"
-ru="йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ"
-
-# Меняем раскладку текста и печатаем его обратно через wtype
-if [[ "$text" =~ [а-яА-Я] ]]; then
-  fixed=$(echo "$text" | tr "$ru" "$en")
-else
-  fixed=$(echo "$text" | tr "$en" "$ru")
-fi
-
-wtype "$fixed"
+python3 /home/rdf-2041/dotfiles/.config/hypr/punto.py
+sleep 0.05
+hyprctl dispatch pass "CTRL, V"
+hyprctl dispatch switchxkblayout current next

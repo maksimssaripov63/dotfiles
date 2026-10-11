@@ -613,7 +613,7 @@ hl.bind(
 
 hl.bind(mainMod .. " + " .. "P", hl.dsp.window.pin())
 
-hl.bind("SUPER + R", hl.dsp.exec_cmd("wofi --show drun --allow-images --insensitive"))
+hl.bind("SUPER + R", hl.dsp.exec_cmd("killall wofi || wofi --show drun --allow-images --insensitive"))
 
 --bind = SUPER, W, exec, sh -c "/home/rdf-2041/.local/bin/anuclipt list | fuzzel --dmenu | /home/rdf-2041/.local/bin/anuclipt decode | wl-copy"
 
@@ -623,7 +623,7 @@ hl.bind("SUPER + R", hl.dsp.exec_cmd("wofi --show drun --allow-images --insensit
 
 --exec-once = wl-paste --type image --watch cliphist store
 
-hl.bind(mainMod .. " + " .. "W", hl.dsp.exec_cmd("copyq toggle"))
+hl.bind("SUPER + W", hl.dsp.exec_cmd("copyq toggle"))
 
 -- Переключение активного окна на весь экран по кнопке F11
 
@@ -641,21 +641,20 @@ hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "P", hl.dsp.exec_cmd("~/dotfiles
 
 -- 1. Для одиночного слова: выделит, скопирует, сотрет, обработает в Python, вставит и СРАЗУ переключит язык
 
-hl.bind(
-	"CONTROL + F1",
-	hl.dsp.exec_cmd(
-		'hyprctl dispatch sendshortcut "CTRL_SHIFT, Left, active" && hyprctl dispatch sendshortcut "CTRL, C, active" && hyprctl dispatch sendshortcut ", BackSpace, active" && ~/punto.py && hyprctl dispatch sendshortcut "CTRL, V, active" && hyprctl switchxkblayout current next'
-	)
-)
+--hl.bind("CONTROL" .. "+" .. "F1", hl.dsp.exec_cmd("punto"))
+
+-- 🎯 ОФИЦИАЛЬНЫЙ АСИНХРОННЫЙ ЗАПУСК ПУНТО-СКРИПТА ДЛЯ HYPRLAND LUA
+--Никаких лямбд, амперсандов && и капризных exec. Только чистый exec_cmd и полный путь!
+--hl.bind("CONTROL + F1", hl.dsp.exec_cmd("bash /home/rdf-2041/dotfiles/.config/hypr/punto.sh"))
 
 -- 2. Для ручного выделения фрагмента: скопирует, сотрет, обработает в Python, вставит и СРАЗУ переключит язык
 
-hl.bind(
-	"CONTROL + SHIFT + F1",
-	hl.dsp.exec_cmd(
-		'hyprctl dispatch sendshortcut "CTRL, C, active" && hyprctl dispatch sendshortcut ", BackSpace, active" && ~/punto.py && hyprctl dispatch sendshortcut "CTRL, V, active" && hyprctl switchxkblayout current next'
-	)
-)
+--hl.bind(
+--	"CONTROL + SHIFT + F1",
+--	hl.dsp.exec_cmd(
+--		'hyprctl dispatch sendshortcut "CTRL, C, active" && hyprctl dispatch sendshortcut ", BackSpace, active" && punto.py && hyprctl dispatch sendshortcut "CTRL, V, active" && hyprctl switchxkblayout current next'
+--	)
+--)
 
 --#############################
 
