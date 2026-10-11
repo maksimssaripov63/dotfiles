@@ -643,6 +643,16 @@ hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "P", hl.dsp.exec_cmd("~/dotfiles
 
 --hl.bind("CONTROL" .. "+" .. "F1", hl.dsp.exec_cmd("punto"))
 
+-- 🎯 ОФИЦИАЛЬНЫЙ СИНТАКСИС ВЫЗОВА ЦЕПОЧЕК ДИСПЕТЧЕРА В HYPRLAND LUA
+--hl.bind("CONTROL + F1", function()
+--	hl.dsp.pass("CTRL_SHIFT, left, active")
+--	hl.dispatch("sendshortcut", "CTRL, C, active")
+--	hl.dispatch("sendshortcut", "BackSpace, active")
+--	hl.dispatch("exec", "python3 /home/rdf-2041/dotfiles/.config/hypr/punto.py")
+--	hl.dispatch("sendshortcut", "CTRL, V, active")
+--	hl.dispatch("switchxkblayout", "current", "next")
+--end)
+
 -- 🎯 ОФИЦИАЛЬНЫЙ АСИНХРОННЫЙ ЗАПУСК ПУНТО-СКРИПТА ДЛЯ HYPRLAND LUA
 --Никаких лямбд, амперсандов && и капризных exec. Только чистый exec_cmd и полный путь!
 --hl.bind("CONTROL + F1", hl.dsp.exec_cmd("bash /home/rdf-2041/dotfiles/.config/hypr/punto.sh"))
