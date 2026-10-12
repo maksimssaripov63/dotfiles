@@ -57,7 +57,7 @@ hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 -- See https://wiki.hypr.land/Configuring/Monitors/
 
 hl.monitor({
-	output = "",
+	output = "auto",
 	mode = "preferred",
 	position = "auto",
 	scale = "auto",

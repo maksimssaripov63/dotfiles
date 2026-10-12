@@ -397,8 +397,8 @@
             "name": "экран"
         }
     ],
-    "current_scene": "экран",
-    "current_program_scene": "экран",
+    "current_scene": "Scene",
+    "current_program_scene": "Scene",
     "canvases": [],
     "current_transition": "Fade",
     "transition_duration": 300,
