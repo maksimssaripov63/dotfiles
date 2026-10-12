@@ -195,7 +195,7 @@ alias ff="firefox > /dev/null 2>&1 &"
 
 alias gh="firefox 'https://github.com/' > /dev/null 2>&1 &"
 
-alias hypr="nvim ~/dotfiles/.config/hypr/hyprland.conf"
+alias hypr="nvim ~/dotfiles/.config/hypr/hyprland.lua"
 #source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 alias office="onlyoffice-desktopeditors > /dev/null 2>&1 &"
