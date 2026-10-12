@@ -763,17 +763,17 @@ hl.window_rule({
 -- 1. Открепляем окно от автоматической сетки тайлинга
 
 hl.window_rule({
-	name = "float_on_502",
+	name = "QRCA",
 	match = {
-		class = "*qrca*",
+		class = ".*qrca.*",
 	},
 	float = true,
 })
 
 hl.window_rule({
-	name = "pin_on_503",
+	name = "pin_on",
 	match = {
-		class = "*qrca*",
+		class = ".*qrca.*",
 	},
 	pin = true,
 })
@@ -783,8 +783,9 @@ hl.window_rule({
 hl.window_rule({
 	name = "no_shadow_true_506",
 	match = {
-		class = "*qrca*",
+		class = ".*qrca.*",
 	},
+	no_shadow = true,
 	--TODO: review rule: "no_shadow true"
 })
 
@@ -793,7 +794,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "size_250_275_509",
 	match = {
-		class = "*qrca*",
+		class = ".*qrca.*",
 	},
 	size = { 250, 275 },
 })
@@ -803,7 +804,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "move_1350_10_511",
 	match = {
-		class = "*qrca*",
+		class = ".*qrca.*",
 	},
 	move = { 1350, 10 },
 })
@@ -811,7 +812,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "center_on_515",
 	match = {
-		class = "*Calendar*",
+		class = ".*Calendar.*",
 	},
 	center = true,
 })
@@ -819,7 +820,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "float_on_516",
 	match = {
-		class = "*Calendar*",
+		class = ".*Calendar.*",
 	},
 	float = true,
 })
@@ -827,7 +828,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "size_250_275_517",
 	match = {
-		class = "*Calendar*",
+		class = ".*Calendar.*",
 	},
 	size = { 250, 275 },
 })
