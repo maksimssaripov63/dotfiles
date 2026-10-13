@@ -156,11 +156,11 @@ hl.config({
 		-- Set to true enable resizing windows by clicking and dragging on borders and gaps
 		resize_on_border = true,
 		-- Please see https://wiki.hypr.land/Configuring/Tearing/ before you turn this on
-		allow_tearing = false,
+		allow_tearing = true,
 		layout = "dwindle",
 		col = {
-			active_border = { colors = { "rgb(00ff00)", "rgb(00ffff)" }, angle = 60 },
-			inactive_border = "rgb(001100)",
+			active_border = { colors = { "rgb(00ffff)", "rgb(00ffff)" }, angle = 60 },
+			inactive_border = "rgb(990000)",
 		},
 	},
 })
@@ -225,6 +225,8 @@ hl.curve("quick", {
 	type = "bezier",
 	points = { { 0.15, 0 }, { 0.1, 1 } },
 })
+
+--hl.animation({ leaf = "workspaces", enabled = true, speed = 5, bezier = "almostLinear" })
 hl.animation({ leaf = "global", enabled = true, speed = 5, bezier = "default" })
 hl.animation({ leaf = "border", enabled = true, speed = 90, bezier = "easeOutQuint" })
 hl.animation({ leaf = "windows", enabled = true, speed = 4.0, bezier = "easeOutQuint" })
