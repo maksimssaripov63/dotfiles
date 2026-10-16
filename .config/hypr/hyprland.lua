@@ -314,6 +314,8 @@ hl.config({
     -- Set to 0 or 1 to disable the anime mascot wallpapers
     disable_hyprland_logo = false,
     -- If true disables the random hyprland logo / anime girl background. :(
+    mouse_move_enables_dpms = true,
+    key_press_enables_dpms = true,
   },
 })
 
@@ -640,6 +642,8 @@ hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "L", hl.dsp.exec_cmd("hyprlock")
 --bind = SUPER, Space, exec, ~/dotfiles/switch_word.sh
 
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "P", hl.dsp.exec_cmd("~/dotfiles/.config/waybar/scripts/powermenu.sh"))
+
+--hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "P", hl.dispatch("dpmsoff && sleep 1 && dpmson"))
 
 -- 1. Для одиночного слова: выделит, скопирует, сотрет, обработает в Python, вставит и СРАЗУ переключит язык
 
