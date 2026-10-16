@@ -57,10 +57,10 @@ hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 -- See https://wiki.hypr.land/Configuring/Monitors/
 
 hl.monitor({
-	output = "auto",
-	mode = "preferred",
-	position = "auto",
-	scale = "auto",
+  output = "auto",
+  mode = "preferred",
+  position = "auto",
+  scale = "auto",
 })
 
 --##################
@@ -148,82 +148,82 @@ hl.env("HYPRCURSOR_SIZE", 24)
 -- https://wiki.hypr.land/Configuring/Variables/#general
 
 hl.config({
-	general = {
-		gaps_in = 5,
-		gaps_out = 9.5,
-		border_size = 2,
-		-- https://wiki.hypr.land/Configuring/Variables/#variable-types for info about colors
-		-- Set to true enable resizing windows by clicking and dragging on borders and gaps
-		resize_on_border = true,
-		-- Please see https://wiki.hypr.land/Configuring/Tearing/ before you turn this on
-		allow_tearing = true,
-		layout = "dwindle",
-		col = {
-			active_border = { colors = { "rgb(00ffff)", "rgb(00ffff)" }, angle = 60 },
-			inactive_border = "rgb(990000)",
-		},
-	},
+  general = {
+    gaps_in = 5,
+    gaps_out = 9.5,
+    border_size = 2,
+    -- https://wiki.hypr.land/Configuring/Variables/#variable-types for info about colors
+    -- Set to true enable resizing windows by clicking and dragging on borders and gaps
+    resize_on_border = true,
+    -- Please see https://wiki.hypr.land/Configuring/Tearing/ before you turn this on
+    allow_tearing = true,
+    layout = "dwindle",
+    col = {
+      active_border = { colors = { "rgb(00ffff)", "rgb(00ffff)" }, angle = 60 },
+      inactive_border = "rgb(990000)",
+    },
+  },
 })
 
 -- https://wiki.hypr.land/Configuring/Variables/#decoration
 
 hl.config({
-	decoration = {
-		rounding = 5,
-		rounding_power = 5,
-		-- Change transparency of focused and unfocused windows
-		active_opacity = 1,
-		inactive_opacity = 0.8,
-		shadow = {
-			enabled = true,
-			range = 100,
-			render_power = 100,
-			color = "rgba(000000ff)",
-		},
-		-- https://wiki.hypr.land/Configuring/Variables/#blur
-		blur = {
-			enabled = false,
-			size = 0,
-			passes = 1,
-			new_optimizations = true,
-			vibrancy = 0.1696,
-			xray = true,
-		},
-	},
+  decoration = {
+    rounding = 5,
+    rounding_power = 5,
+    -- Change transparency of focused and unfocused windows
+    active_opacity = 1,
+    inactive_opacity = 0.8,
+    shadow = {
+      enabled = true,
+      range = 100,
+      render_power = 100,
+      color = "rgba(000000ff)",
+    },
+    -- https://wiki.hypr.land/Configuring/Variables/#blur
+    blur = {
+      enabled = false,
+      size = 0,
+      passes = 1,
+      new_optimizations = true,
+      vibrancy = 0.1696,
+      xray = true,
+    },
+  },
 })
 
 -- https://wiki.hypr.land/Configuring/Variables/#animations
 
 hl.config({
-	animations = {
-		enabled = true,
-		-- Default curves, see https://wiki.hypr.land/Configuring/Animations/#curves
-		--        NAME,           X0,   Y0,   X1,   Y1
-		-- Default animations, see https://wiki.hypr.land/Configuring/Animations/
-		--           NAME,          ONOFF, SPEED, CURVE,        [STYLE]
-		--animation = workspacesIn,  1,     1.21,  almostLinear, fade
-		--animation = workspacesOut, 1,     1.94,  almostLinear, fade
-	},
+  animations = {
+    enabled = true,
+    -- Default curves, see https://wiki.hypr.land/Configuring/Animations/#curves
+    --        NAME,           X0,   Y0,   X1,   Y1
+    -- Default animations, see https://wiki.hypr.land/Configuring/Animations/
+    --           NAME,          ONOFF, SPEED, CURVE,        [STYLE]
+    --animation = workspacesIn,  1,     1.21,  almostLinear, fade
+    --animation = workspacesOut, 1,     1.94,  almostLinear, fade
+  },
 })
 hl.curve("easeOutQuint", {
-	type = "bezier",
-	points = { { 0.23, 1 }, { 0.32, 1 } },
+  type = "bezier",
+  points = { { 0.23, 1 }, { 0.32, 1 } },
 })
 hl.curve("easeInOutCubic", {
-	type = "bezier",
-	points = { { 0.65, 0.05 }, { 0.36, 1 } },
+  type = "bezier",
+  points = { { 0.65, 0.05 }, { 0.36, 1 } },
 })
 hl.curve("linear", {
-	type = "bezier",
-	points = { { 0, 0 }, { 1, 1 } },
+  type = "bezier",
+  points = { { 0, 0 }, { 1, 1 } },
 })
 hl.curve("almostLinear", {
-	type = "bezier",
-	points = { { 0.5, 0.5 }, { 0.75, 1 } },
+  type = "bezier",
+  points = { { 0.5, 0.5 }, { 0.75, 1 } },
 })
 hl.curve("quick", {
-	type = "bezier",
-	points = { { 0.15, 0 }, { 0.1, 1 } },
+  type = "bezier",
+  points = { { 0.15, 0 }, { 0.1, 1 } },
 })
 
 --hl.animation({ leaf = "workspaces", enabled = true, speed = 5, bezier = "almostLinear" })
@@ -291,30 +291,30 @@ hl.animation({ leaf = "borderangle", enabled = false, speed = 1, bezier = "quick
 -- See https://wiki.hypr.land/Configuring/Dwindle-Layout/ for more
 
 hl.config({
-	dwindle = {
-		--pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-		preserve_split = true,
-		-- You probably want this
-	},
+  dwindle = {
+    --pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+    preserve_split = true,
+    -- You probably want this
+  },
 })
 
 -- See https://wiki.hypr.land/Configuring/Master-Layout/ for more
 
 hl.config({
-	master = {
-		new_status = "master",
-	},
+  master = {
+    new_status = "master",
+  },
 })
 
 -- https://wiki.hypr.land/Configuring/Variables/#misc
 
 hl.config({
-	misc = {
-		force_default_wallpaper = -1,
-		-- Set to 0 or 1 to disable the anime mascot wallpapers
-		disable_hyprland_logo = false,
-		-- If true disables the random hyprland logo / anime girl background. :(
-	},
+  misc = {
+    force_default_wallpaper = -1,
+    -- Set to 0 or 1 to disable the anime mascot wallpapers
+    disable_hyprland_logo = false,
+    -- If true disables the random hyprland logo / anime girl background. :(
+  },
 })
 
 --############
@@ -326,18 +326,18 @@ hl.config({
 -- https://wiki.hypr.land/Configuring/Variables/#input
 
 hl.config({
-	input = {
-		kb_layout = "us, ru",
-		kb_options = "grp:alt_shift_toggle",
-		follow_mouse = 1,
-		sensitivity = 0,
-		-- -1.0 - 1.0, 0 means no modification.
-		-- Заставляем систему логировать переключение раскладки
-		touchpad = {
-			natural_scroll = true,
-			tap_to_click = true,
-		},
-	},
+  input = {
+    kb_layout = "us, ru",
+    kb_options = "grp:alt_shift_toggle",
+    follow_mouse = 1,
+    sensitivity = 0,
+    -- -1.0 - 1.0, 0 means no modification.
+    -- Заставляем систему логировать переключение раскладки
+    touchpad = {
+      natural_scroll = true,
+      tap_to_click = true,
+    },
+  },
 })
 
 -- Блок кастомных мультитач-жестов (Новый синтаксис Hyprland)
@@ -347,9 +347,9 @@ hl.config({
 -- 1. Плавный сдвиг рабочих столов (4 пальца влево/вправо)
 
 hl.gesture({
-	["fingers"] = 4,
-	["direction"] = "horizontal",
-	["action"] = "workspace",
+  ["fingers"] = 4,
+  ["direction"] = "horizontal",
+  ["action"] = "workspace",
 })
 
 -- 2. Быстрое закрытие активного окна (Свайп 3 пальцами вниз)
@@ -359,29 +359,29 @@ hl.gesture({
 -- 3. Развернуть окно на весь экран
 
 hl.gesture({
-	["fingers"] = 4,
-	["direction"] = "up",
-	["action"] = "fullscreen",
+  ["fingers"] = 4,
+  ["direction"] = "up",
+  ["action"] = "fullscreen",
 })
 
 hl.gesture({
-	["fingers"] = 4,
-	["direction"] = "down",
-	["action"] = "fullscreen",
+  ["fingers"] = 4,
+  ["direction"] = "down",
+  ["action"] = "fullscreen",
 })
 
 -- 4. Включить/выключить плавающий режим для окна
 
 hl.gesture({
-	["fingers"] = 3,
-	["direction"] = "up",
-	["action"] = "float",
+  ["fingers"] = 3,
+  ["direction"] = "up",
+  ["action"] = "float",
 })
 
 hl.gesture({
-	["fingers"] = 3,
-	["direction"] = "down",
-	["action"] = "float",
+  ["fingers"] = 3,
+  ["direction"] = "down",
+  ["action"] = "float",
 })
 
 -- 5. Интерактивное изменение размера окна (Удерживаем SUPER + щипок/pinch двумя пальцами)
@@ -397,8 +397,8 @@ hl.gesture({
 -- See https://wiki.hypr.land/Configuring/Keywords/#per-device-input-configs for more
 
 hl.device({
-	name = "epic-mouse-v1",
-	sensitivity = -0.9,
+  name = "epic-mouse-v1",
+  sensitivity = -0.9,
 })
 
 --##################
@@ -418,15 +418,15 @@ hl.bind(mainMod .. " + " .. "Return", hl.dsp.exec_cmd("kitty"))
 ----config-file=/home/rdf-2041/.config/ghostty/config.ghostty
 
 hl.bind(
-	mainMod .. " + " .. "SHIFT" .. " + " .. "C",
-	hl.dsp.exec_cmd('sh -c "hypctl reload; pkill waybar; waybar; hyprpanel k"')
+  mainMod .. " + " .. "SHIFT" .. " + " .. "C",
+  hl.dsp.exec_cmd('sh -c "hypctl reload; pkill waybar; waybar; hyprpanel k"')
 )
 
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "Q", hl.dsp.window.close())
 
 hl.bind(
-	mainMod .. " + " .. "SHIFT" .. " + " .. "M",
-	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit")
+  mainMod .. " + " .. "SHIFT" .. " + " .. "M",
+  hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit")
 )
 
 hl.bind(mainMod .. " + " .. "E", hl.dsp.exec_cmd("dolphin"))
@@ -556,15 +556,15 @@ hl.bind(mainMod .. " + " .. "mouse_down", hl.dsp.exec_cmd("wpctl set-volume @DEF
 -- Изменение звука через правильный pactl
 
 hl.bind(
-	"XF86AudioRaiseVolume",
-	hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%"),
-	{ repeating = true, locked = true }
+  "XF86AudioRaiseVolume",
+  hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%"),
+  { repeating = true, locked = true }
 )
 
 hl.bind(
-	"XF86AudioLowerVolume",
-	hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%"),
-	{ repeating = true, locked = true }
+  "XF86AudioLowerVolume",
+  hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%"),
+  { repeating = true, locked = true }
 )
 
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"), { locked = true })
@@ -598,19 +598,19 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 -- Скриншот выбранной области с редактированием (Аналог Ножниц: Win + Shift + S)
 
 hl.bind(
-	"Print",
-	hl.dsp.exec_cmd(
-		'sleep 0.2 && grim -g "$(slurp)" - | tee "/home/rdf-2041/Изображения/Снимки экрана/screenshot_$(date +\'%Y%m%d_%H%M%S\').png" | wl-copy'
-	)
+  "Print",
+  hl.dsp.exec_cmd(
+    'sleep 0.2 && grim -g "$(slurp)" - | tee "/home/rdf-2041/Изображения/Снимки экрана/screenshot_$(date +\'%Y%m%d_%H%M%S\').png" | wl-copy'
+  )
 )
 
 -- Быстрый скриншот всего экрана в буфер обмена (По кнопке Print Screen)
 
 hl.bind(
-	"SUPER + Print",
-	hl.dsp.exec_cmd(
-		"grim - | tee \"/home/rdf-2041/Изображения/Снимки экрана/screenshot_$(date +'%Y%m%d_%H%M%S').png\" |wl-copy"
-	)
+  "SUPER + Print",
+  hl.dsp.exec_cmd(
+    "grim - | tee \"/home/rdf-2041/Изображения/Снимки экрана/screenshot_$(date +'%Y%m%d_%H%M%S').png\" |wl-copy"
+  )
 )
 
 hl.bind(mainMod .. " + " .. "P", hl.dsp.window.pin())
@@ -681,35 +681,35 @@ hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "P", hl.dsp.exec_cmd("~/dotfiles
 -- Example windowrules that are useful
 
 hl.window_rule({
-	name = "suppress-maximize-events",
-	match = {
-		class = ".*",
-	},
-	suppress_event = "maximize",
+  name = "suppress-maximize-events",
+  match = {
+    class = ".*",
+  },
+  suppress_event = "maximize",
 })
 
 hl.window_rule({
-	name = "fix-xwayland-drags",
-	match = {
-		class = "^$",
-		title = "^$",
-		xwayland = true,
-		float = true,
-		fullscreen = false,
-		pin = false,
-	},
-	no_focus = true,
+  name = "fix-xwayland-drags",
+  match = {
+    class = "^$",
+    title = "^$",
+    xwayland = true,
+    float = true,
+    fullscreen = false,
+    pin = false,
+  },
+  no_focus = true,
 })
 
 -- Hyprland-run windowrule
 
 hl.window_rule({
-	name = "move-hyprland-run",
-	match = {
-		class = "hyprland-run",
-	},
-	move = { 20, "monitor_h-120" },
-	float = true,
+  name = "move-hyprland-run",
+  match = {
+    class = "hyprland-run",
+  },
+  move = { 20, "monitor_h-120" },
+  float = true,
 })
 
 -- TODO: manual review: windowrulev = "float", "^(yad)$"
@@ -719,9 +719,9 @@ hl.bind("ALT + Shift_L", hl.dsp.exec_cmd("hyprctl switchxkblayout main next"), {
 -- Запретить Hyprland растягивать и размывать X11-приложения
 
 hl.config({
-	xwayland = {
-		force_zero_scaling = true,
-	},
+  xwayland = {
+    force_zero_scaling = true,
+  },
 })
 
 -- exec-once = $blocker
@@ -729,35 +729,35 @@ hl.config({
 --exec-once = hyprpanel
 
 hl.window_rule({
-	name = "float_on_494",
-	match = {
-		class = "com.github.hluk.copyq",
-	},
-	float = true,
+  name = "float_on_494",
+  match = {
+    class = "com.github.hluk.copyq",
+  },
+  float = true,
 })
 
 hl.window_rule({
-	name = "center_on_495",
-	match = {
-		class = "com.github.hluk.copyq",
-	},
-	center = true,
+  name = "center_on_495",
+  match = {
+    class = "com.github.hluk.copyq",
+  },
+  center = true,
 })
 
 hl.window_rule({
-	name = "float_on_497",
-	match = {
-		class = "org.gnome.Calculator",
-	},
-	float = true,
+  name = "float_on_497",
+  match = {
+    class = "org.gnome.Calculator",
+  },
+  float = true,
 })
 
 hl.window_rule({
-	name = "center_on_498",
-	match = {
-		class = "org.gnome.Calculator",
-	},
-	center = true,
+  name = "center_on_498",
+  match = {
+    class = "org.gnome.Calculator",
+  },
+  center = true,
 })
 
 -- ---- 🌟 ЮВЕЛИРНЫЕ ПРАВИЛА ДЛЯ ОКНА QRCA (БЕЗ ТЕНЕЙ И СЕТКИ) ----
@@ -765,91 +765,91 @@ hl.window_rule({
 -- 1. Открепляем окно от автоматической сетки тайлинга
 
 hl.window_rule({
-	name = "QRCA",
-	match = {
-		class = ".*qrca.*",
-	},
-	float = true,
+  name = "QRCA",
+  match = {
+    class = ".*qrca.*",
+  },
+  float = true,
 })
 
 hl.window_rule({
-	name = "pin_on",
-	match = {
-		class = ".*qrca.*",
-	},
-	pin = true,
+  name = "pin_on",
+  match = {
+    class = ".*qrca.*",
+  },
+  pin = true,
 })
 
 -- 2. Полностью выключаем рендеринг теней только для этого окна
 
 hl.window_rule({
-	name = "no_shadow_true_506",
-	match = {
-		class = ".*qrca.*",
-	},
-	no_shadow = true,
-	--TODO: review rule: "no_shadow true"
+  name = "no_shadow_true_506",
+  match = {
+    class = ".*qrca.*",
+  },
+  no_shadow = true,
+  --TODO: review rule: "no_shadow true"
 })
 
 -- 3. Дополнительно: задаем аккуратный стартовый размер, чтобы оно не разворачивалось на весь экран
 
 hl.window_rule({
-	name = "size_250_275_509",
-	match = {
-		class = ".*qrca.*",
-	},
-	size = { 250, 275 },
+  name = "size_250_275_509",
+  match = {
+    class = ".*qrca.*",
+  },
+  size = { 250, 275 },
 })
 
 --windowrule = match:class .*qrca.*, center on
 
 hl.window_rule({
-	name = "move_1350_10_511",
-	match = {
-		class = ".*qrca.*",
-	},
-	move = { 1350, 10 },
+  name = "move_1350_10_511",
+  match = {
+    class = ".*qrca.*",
+  },
+  move = { 1350, 10 },
 })
 
 hl.window_rule({
-	name = "center_on_515",
-	match = {
-		class = ".*Calendar.*",
-	},
-	center = true,
+  name = "center_on_515",
+  match = {
+    class = ".*Calendar.*",
+  },
+  center = true,
 })
 
 hl.window_rule({
-	name = "float_on_516",
-	match = {
-		class = ".*Calendar.*",
-	},
-	float = true,
+  name = "float_on_516",
+  match = {
+    class = ".*Calendar.*",
+  },
+  float = true,
 })
 
 hl.window_rule({
-	name = "size_250_275_517",
-	match = {
-		class = ".*Calendar.*",
-	},
-	size = { 250, 275 },
+  name = "size_250_275_517",
+  match = {
+    class = ".*Calendar.*",
+  },
+  size = { 250, 275 },
 })
 
 -- Autostart
 hl.on("hyprland.start", function()
-	hl.exec_cmd("copyq --daemon")
-	hl.exec_cmd("copyq --start-server")
-	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
-	hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
-	hl.exec_cmd("waybar")
-	hl.exec_cmd("hyprpaper")
-	hl.exec_cmd("easyeffects --gapplication-service")
-	hl.exec_cmd("kitty")
-	hl.exec_cmd("udiskie")
-	hl.exec_cmd("swaync")
-	hl.exec_cmd("easyeffects --gapplication-service")
-	hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
-	hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita:dark'")
-	hl.exec_cmd("tg-ws-proxy")
-	hl.exec_cmd("easy-switcher -r")
+  hl.exec_cmd("copyq --daemon")
+  hl.exec_cmd("copyq --start-server")
+  hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+  hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+  hl.exec_cmd("waybar")
+  hl.exec_cmd("hyprpaper")
+  hl.exec_cmd("easyeffects --gapplication-service")
+  hl.exec_cmd("kitty")
+  hl.exec_cmd("udiskie")
+  hl.exec_cmd("swaync")
+  hl.exec_cmd("easyeffects --gapplication-service")
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita:dark'")
+  hl.exec_cmd("tg-ws-proxy")
+  hl.exec_cmd("sudo ./~/dotfiles/easy-switcher -r")
 end)
