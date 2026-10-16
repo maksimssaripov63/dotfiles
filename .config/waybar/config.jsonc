@@ -120,12 +120,16 @@
         "on-click": "pavucontrol"
     },
 
-    "bluetooth": {
-        "format": "  Bluetooth  ",
-        "format-disabled": "  BT Выкл  ",
-        "format-connected": "  BT: {num_connections}  ",
-        "on-click": "blueman-manager"
-    },
+"bluetooth": {
+    "interval": 1,
+    "format": "  Bluetooth ",
+    "format-disabled": "    BT Выкл ",
+    "format-connected": "    BT: {num_connections} ",
+    "on-click-right": "blueman-manager",
+    "on-click": "bash -c 'rfkill unblock bluetooth; if bluetoothctl show | grep -q \"Powered: yes\"; then bluetoothctl power off; else bluetoothctl power on; fi; pkill -SIGRTMIN+9 waybar'"
+},
+
+
 
     //--- КНОПКА ПИТАНИЯ (БРОНЕБОЙНАЯ КОМАНДА ВЫХОДА) ---
     "custom/power": {
@@ -221,6 +225,7 @@
     //"format": "{}"   // <--- это значение по умолчанию
     "format": "<span font='9' rise='-4444'>{}</span>"
   }
+
 
 }
 
