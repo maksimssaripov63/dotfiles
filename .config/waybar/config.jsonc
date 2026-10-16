@@ -76,7 +76,8 @@
         "interval": 0,
         "format": "   {}",
         "tooltip": false,
-        "on-click": "echo 'English (EN)\nРусский (RU)' | wofi --dmenu --prompt 'Выберите язык / Select language' | grep -q 'Русский' && hyprctl switchxkblayout all 1 || hyprctl switchxkblayout all 0"
+        "on-click-right": "echo 'English (EN)\nРусский (RU)' | wofi --dmenu --prompt 'Выберите язык / Select language' | grep -q 'Русский' && hyprctl switchxkblayout all 1 || hyprctl switchxkblayout all 0",
+        "on-click": "hyprctl switchxkblayout all next"
     },
 
 
@@ -121,8 +122,8 @@
 
     "bluetooth": {
         "format": "  Bluetooth  ",
-        "format-disabled": "🔸 BT Выкл  ",
-        "format-connected": "🔹 BT: {num_connections}  ",
+        "format-disabled": "  BT Выкл  ",
+        "format-connected": "  BT: {num_connections}  ",
         "on-click": "blueman-manager"
     },
 
