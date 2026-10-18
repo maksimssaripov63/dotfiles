@@ -858,3 +858,6 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("sudo ~/dotfiles/easy-switcher/./easy-switcher -r")
   hl.exec_cmd("hypridle")
 end)
+
+-- hyprmon: managed monitor profile include
+require("hyprmon")

@@ -158,7 +158,7 @@
         "scroll-step": 5,
          //При клике открывается встроенный ползунок яркости через системный интерфейс gnome/mate (если установлен)
         // либо графическая панель управления утилиты blugon / brightness-controller
-        "on-click": "brightness-controller || generic-bl-slider" 
+        "on-click": "brightness-controller || generic-bl-slider || nwg-displays" 
     },
 
     "custom/volume": {
