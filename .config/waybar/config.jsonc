@@ -125,8 +125,8 @@
     "format": "  Bluetooth ",
     "format-disabled": "    BT Выкл ",
     "format-connected": "    BT: {num_connections} ",
-    "on-click-right": "blueman-manager",
-    "on-click": "bash -c 'rfkill unblock bluetooth; if bluetoothctl show | grep -q \"Powered: yes\"; then bluetoothctl power off; else bluetoothctl power on; fi; pkill -SIGRTMIN+9 waybar'"
+    "on-click": "blueman-manager",
+    "on-click-right": "bash -c 'rfkill unblock bluetooth; if bluetoothctl show | grep -q \"Powered: yes\"; then bluetoothctl power off; else bluetoothctl power on; fi; pkill -SIGRTMIN+9 waybar'"
 },
 
 
@@ -148,7 +148,7 @@
 
     "custom/add_workspace": {
         "format": " + ", 
-        "on-click": "hyprctl dispatch workspace $(hyprctl workspaces -j | jq '[.[].id] | max + 1')",
+        "on-click": "hl.dsp.focus({ workspace = \"+1\" })",
         "tooltip": false
     },
 
