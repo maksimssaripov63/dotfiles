@@ -54,14 +54,15 @@
     },
 
     "clock": {
-        "interval": 0.5,
-        "format": " {:%H:%M:%S }",
-        "format-alt": " {:%d-%m-%Y (%A)}",
+        "format": "  {:%H:%M:%S} ",
+        "format-alt": "  {:%d-%m-%Y (%A)} ",
+        "interval": 1,
         "on-click-right": "gnome-calendar",
-        "tooltip": false, // Полностью отключаем капризный встроенный тултип, чтобы он не мешал
-        // ЛЕВЫЙ КЛИК: Открывает календарь, если он закрыт, или мгновенно прячет его, если он уже на экране
-        //"on-click": "pkill yad || yad --calendar --width=250 --height=200 --undecorated --fixed --posx=830 --posy=45 --close-on-unfocus"
+        "on-click": "pkill yad || yad --calendar --width=250 --height=200 --undecorated --fixed --posx=830 --posy=45 --close-on-unfocus",
+        "tooltip": true,
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
+
 
   "custom/calendar": {
     "format": "",
