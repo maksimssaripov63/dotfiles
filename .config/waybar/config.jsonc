@@ -211,14 +211,28 @@
       "status-icons": {
         "paused": "▶"
       },
-      "ignored-players": [""] // Игнорировать определенные плееры, если нужно
-    },
+      "ignored-players": [""], // Игнорировать определенные плееры, если нужно
+
+      // 🚀 ЛЕВЫЙ КЛИК: Вызывает сочное графическое меню Wofi со списком плееров и управлением
+        "on-click-backward": "playerctl --list-all | xargs -I {} sh -c 'status=$(playerctl --player={} status 2>/dev/null); meta=$(playerctl --player={} metadata --format \"{{title}} - {{artist}}\" 2>/dev/null); echo \"{}: [$status] $meta\"' | wofi --dmenu --prompt 'Управление медиаплеерами' | awk -F: '{print $1}' | xargs -I {} playerctl --player={} play-pause",
+
+        // 🚀 СКРОЛЛ ВВЕРХ (mUp): Мгновенно включает СЛЕДУЮЩИЙ трек на активном плеере!
+        "on-click-right": "playerctl next",
+
+        // 🚀 СКРОЛЛ ВНИЗ (mDown): Мгновенно включает ПРЕДЫДУЩИЙ трек на активном плеере!
+        "on-click-middle": "playerctl previous",
+
+        // 🚀 ХАК ДЛЯ ПЕРЕКЛЮЧЕНИЯ ПЛЕЕРОВ: Вешаем на правый клик смену самого плеера (например, со Spotify на Firefox)
+        "on-click": "playerctl play-pause"
+      },
+    
 
   "custom/procs": {
     "format": "   ", // Иконка меню (нужен Nerd Font). Можно заменить на другую, например "" или "⚙"
     "tooltip": true,
     "tooltip-format": "Диспетчер процессов",
     "on-click": "~/dotfiles/.config/waybar/scripts/process_menu.sh",
+    "on-click": "kitty btop",
     "interval": "once"
 },
 

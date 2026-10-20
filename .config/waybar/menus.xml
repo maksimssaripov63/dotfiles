@@ -1,0 +1,21 @@
+cat << 'EOF' > ~/.config/waybar/menus.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <menu id="player-menu">
+    <section>
+      <item>
+        <attribute name="label">Переключить Spotify</attribute>
+        <attribute name="action">mpris.spotify</attribute>
+      </item>
+      <item>
+        <attribute name="label">Переключить Firefox</attribute>
+        <attribute name="action">mpris.firefox</attribute>
+      </item>
+      <item>
+        <attribute name="label">Переключить MPV</attribute>
+        <attribute name="action">mpris.mpv</attribute>
+      </section>
+  </menu>
+</interface>
+EOF
+
