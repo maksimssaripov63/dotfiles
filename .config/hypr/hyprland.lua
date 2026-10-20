@@ -421,7 +421,7 @@ hl.bind(mainMod .. " + " .. "Return", hl.dsp.exec_cmd("kitty"))
 
 hl.bind(
   mainMod .. " + " .. "SHIFT" .. " + " .. "C",
-  hl.dsp.exec_cmd('sh -c "hypctl reload; pkill waybar; waybar; hyprpanel k"')
+  hl.dsp.exec_cmd('sh -c "hypctl reload; pkill waybar; waybar; sudo ~/dotfiles/easy-switcher/./easy-switcher -r"')
 )
 
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "Q", hl.dsp.window.close())
@@ -861,21 +861,3 @@ end)
 
 -- hyprmon: managed monitor profile include
 require("hyprmon")
-
--- Блок general закрывается своей собственной фигурной скобкой ювелирно!
-hl.config({
-  misc = {
-    -- Этот параметр в Hyprland отвечает за корректную инициализацию слоев окон оверлея
-    initial_workspace_tracking = false,
-    animate_manual_resizes = false,
-  },
-})
-
--- Передаем правила слоев напрямую в массив конфигуратора
-hl.config({
-  layerrule = {
-    "unset, waybar",
-    "blur, waybar",
-    "ignorezero, waybar",
-  },
-})
