@@ -857,6 +857,7 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("tg-ws-proxy")
   hl.exec_cmd("sudo ~/dotfiles/easy-switcher/./easy-switcher -r")
   hl.exec_cmd("hypridle")
+  hl.exec_cmd("dunst")
 end)
 
 -- hyprmon: managed monitor profile include
