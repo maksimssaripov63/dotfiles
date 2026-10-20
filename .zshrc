@@ -310,3 +310,5 @@ add_app() {
 
 export QT_QPA_PLATFORM=wayland
 export COPYQ_SESSION_VERSION=1
+
+alias tmog="tmog-task-manager &"
