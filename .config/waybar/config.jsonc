@@ -178,17 +178,19 @@
     },
 
     "custom/usb": {
-        // Считываем только РЕАЛЬНО смонтированные диски, отсекая пустые папки
-        "exec": "findmnt -l -o TARGET | grep '/run/media/rdf-2041/' | awk -F'/' '{print $5}' | sort -u | paste -sd ' | ' -",
-        "interval": 2,
-        "interval": 2,
-        "format": "  USB: {}",
-        "format-none": "",
+        "exec": "paths=($(findmnt -ln -o TARGET | grep '^/run/media/rdf-2041/')); count=${#paths[@]}; if [ $count -eq 0 ]; then echo \"{\\\"text\\\": \\\"\\\"}\"; exit 0; fi; idx=$(cat /tmp/active_usb_idx 2>/dev/null || echo 0); if [ $idx -ge $count ] || [ $idx -lt 0 ]; then idx=0; echo 0 > /tmp/active_usb_idx; fi; active_path=${paths[$idx]}; active_name=$(basename \"$active_path\"); echo \"{\\\"text\\\": \\\"  $active_name ($((idx+1))/$count)\\\", \\\"tooltip\\\": \\\"Путь: $active_path\\\"}\"",
+        "interval": 1,
+
+        "format": "{}", 
         "return-type": "json",
-        "on-click": "dolphin /run/media/rdf-2041/",
-        // ПРАВЫЙ КЛИК: Использует udiskie-umount по маске путей, что гарантирует чистое и безопасное извлечение
-        "on-click-right": "pkill dolphin; sh -c 'udiskie-umount /run/media/rdf-2041/* && notify-send \"USB-накопитель\" \"Диск безопасно извлечен!\"'"
+
+        "on-click": "paths=($(findmnt -ln -o TARGET | grep '^/run/media/rdf-2041/')); idx=$(cat /tmp/active_usb_idx 2>/dev/null || echo 0); active_path=${paths[$idx]}; if [ -d \"$active_path\" ]; then dolphin \"$active_path\"; fi",
+        "on-click-right": "paths=($(findmnt -ln -o TARGET | grep '^/run/media/rdf-2041/')); idx=$(cat /tmp/active_usb_idx 2>/dev/null || echo 0); active_path=${paths[$idx]}; active_name=$(basename \"$active_path\"); if [ -n \"$active_path\" ]; then pkill -f \"dolphin $active_path\"; udiskie-umount \"$active_path\" && notify-send \"USB-накопитель\" \"Диск $active_name успешно извлечен!\"; echo 0 > /tmp/active_usb_idx; fi",
+        "on-scroll-up": "paths=($(findmnt -ln -o TARGET | grep '^/run/media/rdf-2041/')); count=${#paths[@]}; if [ $count -gt 1 ]; then idx=$(cat /tmp/active_usb_idx 2>/dev/null || echo 0); idx=$(( (idx + 1) % count )); echo $idx > /tmp/active_usb_idx; pkill -RTMIN+8 waybar; fi",
+        "on-scroll-down": "paths=($(findmnt -ln -o TARGET | grep '^/run/media/rdf-2041/')); count=${#paths[@]}; if [ $count -gt 1 ]; then idx=$(cat /tmp/active_usb_idx 2>/dev/null || echo 0); idx=$(( (idx - 1 + count) % count )); echo $idx > /tmp/active_usb_idx; pkill -RTMIN+8 waybar; fi",
+        "signal": 8
     },
+
 
     "custom/uptime": {
         "exec": "awk '{print int($1/3600)\":\"int(($1%3600)/60)\":\"int($1%60)}' /proc/uptime | awk -F: '{printf \"%02d:%02d:%02d\\n\", $1, $2, $3}'",
