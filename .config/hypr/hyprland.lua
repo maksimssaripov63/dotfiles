@@ -373,25 +373,6 @@ hl.gesture({
   ["action"] = "fullscreen",
 })
 
-hl.config({
-  bind = {
-    -- Намертво привязываем сочетание клавиш Super+Tab к официальному диспетчеру плагина!
-    "SUPER, TAB, exec, hyprctl dispatch hyprspace:toggle",
-  },
-})
-
-hl.gesture({
-  ["fingers"] = 4,
-  ["direction"] = "down",
-  -- Вешаем вызов матрицы рабочих столов на трехпальцевый свайп вверх по тачпаду!
-  ["action"] = {
-    -- 🚀 ИСПРАВЛЕНО: Вызываем встроенный Lua-метод плагина напрямую из графического ядра!
-    finish = function()
-      hl.plugin.overview.toggle()
-    end,
-  },
-})
-
 -- 4. Включить/выключить плавающий режим для окна
 
 hl.gesture({
@@ -441,17 +422,11 @@ hl.bind(mainMod .. " + " .. "Return", hl.dsp.exec_cmd("kitty"))
 
 ----config-file=/home/rdf-2041/.config/ghostty/config.ghostty
 
-hl.bind(
-  mainMod .. " + " .. "SHIFT" .. " + " .. "C",
-  hl.dsp.exec_cmd('sh -c "hypctl reload; pkill waybar; waybar; sudo ~/dotfiles/easy-switcher/./easy-switcher -r"')
-)
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "C", hl.dsp.exec_cmd('sh -c "hypctl reload; pkill waybar; waybar; sudo ~/dotfiles/easy-switcher/./easy-switcher -r"'))
 
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "Q", hl.dsp.window.close())
 
-hl.bind(
-  mainMod .. " + " .. "SHIFT" .. " + " .. "M",
-  hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit")
-)
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"))
 
 hl.bind(mainMod .. " + " .. "E", hl.dsp.exec_cmd("dolphin"))
 
@@ -579,17 +554,9 @@ hl.bind(mainMod .. " + " .. "mouse_down", hl.dsp.exec_cmd("wpctl set-volume @DEF
 
 -- Изменение звука через правильный pactl
 
-hl.bind(
-  "XF86AudioRaiseVolume",
-  hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%"),
-  { repeating = true, locked = true }
-)
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%"), { repeating = true, locked = true })
 
-hl.bind(
-  "XF86AudioLowerVolume",
-  hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%"),
-  { repeating = true, locked = true }
-)
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%"), { repeating = true, locked = true })
 
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"), { locked = true })
 
@@ -621,21 +588,11 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 
 -- Скриншот выбранной области с редактированием (Аналог Ножниц: Win + Shift + S)
 
-hl.bind(
-  "Print",
-  hl.dsp.exec_cmd(
-    'sleep 0.2 && grim -g "$(slurp)" - | tee "/home/rdf-2041/Изображения/Снимки экрана/screenshot_$(date +\'%Y%m%d_%H%M%S\').png" | wl-copy'
-  )
-)
+hl.bind("Print", hl.dsp.exec_cmd('sleep 0.2 && grim -g "$(slurp)" - | tee "/home/rdf-2041/Изображения/Снимки экрана/screenshot_$(date +\'%Y%m%d_%H%M%S\').png" | wl-copy'))
 
 -- Быстрый скриншот всего экрана в буфер обмена (По кнопке Print Screen)
 
-hl.bind(
-  "SUPER + Print",
-  hl.dsp.exec_cmd(
-    "grim - | tee \"/home/rdf-2041/Изображения/Снимки экрана/screenshot_$(date +'%Y%m%d_%H%M%S').png\" |wl-copy"
-  )
-)
+hl.bind("SUPER + Print", hl.dsp.exec_cmd("grim - | tee \"/home/rdf-2041/Изображения/Снимки экрана/screenshot_$(date +'%Y%m%d_%H%M%S').png\" |wl-copy"))
 
 hl.bind(mainMod .. " + " .. "P", hl.dsp.window.pin())
 

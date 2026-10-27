@@ -20,7 +20,7 @@
     ],
  
     "modules-center": [
-        "mpris",
+        "custom/mpris",
         "custom/uptime",
         "battery",
         "clock",
@@ -41,7 +41,6 @@
         ""
     ],
 
-    // --- Настройки модулей ЦЕНТРА ---
     "battery": {
         "states": {
             "good": 95,
@@ -225,9 +224,32 @@
         "on-click-middle": "playerctl previous",
 
         // 🚀 ХАК ДЛЯ ПЕРЕКЛЮЧЕНИЯ ПЛЕЕРОВ: Вешаем на правый клик смену самого плеера (например, со Spotify на Firefox)
-        "on-click": "playerctl play-pause"
-      },
-    
+        "on-click": "playerctl play-pause",
+
+        // 🚀 СКРОЛЛ ВВЕРХ: Циклически переключает фокус на СЛЕДУЮЩИЙ запущенный плеер (Spotify -> Firefox)!
+        "on-scroll-up": "players=($(playerctl --list-all 2>/dev/null)); count=${#players[@]}; if [ $count -gt 1 ]; then idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); idx=$(( (idx + 1) % count )); echo $idx > /tmp/active_player_idx; playerctl switch-to ${players[$idx]}; fi",
+
+        // 🚀 СКРОЛЛ ВНИЗ: Циклически переключает фокус на ПРЕДЫДУЩИЙ запущенный плеер!
+        "on-scroll-down": "players=($(playerctl --list-all 2>/dev/null)); count=${#players[@]}; if [ $count -gt 1 ]; then idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); idx=$(( (idx - 1 + count) %  count )); echo $idx > /tmp/active_usb_idx; playerctl switch-to ${players[$idx]}; fi"
+    },
+
+
+"custom/mpris": {
+    // 🚀 EXEC: Сохраняет полное название для тултипа, а для панели ювелирно клеит троеточие "..." при переполнении!
+    "exec": "players=($(playerctl --list-all 2>/dev/null)); count=${#players[@]}; if [ $count -eq 0 ]; then echo \"{\\\"text\\\": \\\"\\\"}\"; exit 0; fi; idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); if [ $idx -ge $count ] || [ $idx -lt 0 ]; then idx=0; echo 0 > /tmp/active_player_idx; fi; active_player=${players[$idx]}; status=$(playerctl -p \"$active_player\" status 2>/dev/null); name_lower=$(echo \"$active_player\" | tr '[:upper:]' '[:lower:]'); text=$(playerctl -p \"$active_player\" metadata --format '{{title}} - {{artist}}' 2>/dev/null | sed 's/\"/\\\\\"/g'); if [ -z \"$text\" ] || [ \"$text\" = \" - \" ]; then text=$(playerctl -p \"$active_player\" metadata --format '{{xesam:title}}' 2>/dev/null | sed 's/\"/\\\\\"/g'); fi; if [ ${#text} -gt 40 ]; then text_short=$(echo \"$text\" | cut -c1-37)\"...\"; else text_short=\"$text\"; fi; if [ \"$status\" = \"Paused\" ]; then icon=\"▶ \"; else if [[ \"$name_lower\" == *spotify* ]]; then icon=\" \"; elif [[ \"$name_lower\" == *firefox* ]] || [[ \"$name_lower\" == *mozilla* ]]; then icon=\" \"; elif [[ \"$name_lower\" == *vlc* ]]; then icon=\"󰕼 \"; else icon=\"🎵 \"; fi; fi; pos_raw=$(playerctl -p \"$active_player\" position 2>/dev/null || echo 0); pos_sec=${pos_raw%%.*}; len_raw=$(playerctl -p \"$active_player\" metadata mpris:length 2>/dev/null || echo 0); len_sec=$((len_raw / 1000000)); if [ $len_sec -gt 0 ]; then time_str=$(printf \"[%02d:%02d / %02d:%02d]\" $((pos_sec / 60)) $((pos_sec % 60)) $((len_sec / 60)) $((len_sec % 60))); else time_str=$(printf \"[%02d:%02d]\" $((pos_sec / 60)) $((pos_sec % 60))); fi; echo \"{\\\"text\\\": \\\"$icon $text_short $time_str ($((idx+1))/$count)\\\", \\\"tooltip\\\": \\\"Плеер: $active_player\\\\nНазвание: $text\\\\nВремя: $time_str\\\"}\"",
+    "interval": 1,
+    "return-type": "json",
+    "format": "{}",
+
+    "on-click": "players=($(playerctl --list-all 2>/dev/null)); idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); active_player=${players[$idx]}; if [ -n \"$active_player\" ]; then playerctl -p \"$active_player\" play-pause; fi",
+    "on-click-right": "players=($(playerctl --list-all 2>/dev/null)); idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); active_player=${players[$idx]}; if [ -n \"$active_player\" ]; then playerctl -p \"$active_player\" next; fi",
+    "on-click-middle": "players=($(playerctl --list-all 2>/dev/null)); idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); active_player=${players[$idx]}; if [ -n \"$active_player\" ]; then playerctl -p \"$active_player\" previous; fi",
+    "on-scroll-up": "players=($(playerctl --list-all 2>/dev/null)); count=${#players[@]}; if [ $count -gt 1 ]; then idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); idx=$(( (idx + 1) % count )); echo $idx > /tmp/active_player_idx; pkill -RTMIN+9 waybar; fi",
+    "on-scroll-down": "players=($(playerctl --list-all 2>/dev/null)); count=${#players[@]}; if [ $count -gt 1 ]; then idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); idx=$(( (idx - 1 + count) % count )); echo $idx > /tmp/active_player_idx; pkill -RTMIN+9 waybar; fi",
+    "signal": 9
+},
+
+
 
   "custom/procs": {
     "format": "   ", // Иконка меню (нужен Nerd Font). Можно заменить на другую, например "" или "⚙"
