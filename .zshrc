@@ -303,7 +303,7 @@ add_app() {
     # Вызываем echo строго по абсолютному пути
     /usr/bin/echo -e "[Desktop Entry]\nType=Application\nName=$name\nExec=$cmd\nIcon=blender\nTerminal=false\nCategories=Development;Graphics;" > "$path"
 
-    /usr/bin/echo "🎯 Ярлык для '$name' успешно создан! Проверяйте в Rofi (Win + Space)."
+    /usr/bin/echo "🎯 Ярлык для '$name' успешно создан! Проверяйте в Rofi (Win + R)."
 }
 
 

@@ -837,6 +837,7 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("sudo ~/dotfiles/easy-switcher/./easy-switcher -r")
   hl.exec_cmd("hypridle")
   hl.exec_cmd("dunst")
+  hl.exec_cmd("blueman-applet")
 end)
 
 -- hyprmon: managed monitor profile include
