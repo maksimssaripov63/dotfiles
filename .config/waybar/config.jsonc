@@ -24,7 +24,7 @@
         "custom/uptime",
         "battery",
         "clock",
-        "custom/calendar",
+        //"custom/calendar",
         "custom/language"
     ],
     
@@ -58,8 +58,8 @@
         "format": "  {:%H:%M:%S} ",
         "format-alt": "  {:%d-%m-%Y (%A)} ",
         "interval": 1,
-        "on-click-right": "gnome-calendar",
-        "on-click": "pkill yad || yad --calendar --width=250 --height=200 --undecorated --fixed --posx=830 --posy=45 --close-on-unfocus",
+        "on-click-middle": "gnome-calendar",
+        "on-click-right": "pkill yad || yad --calendar --width=250 --height=200 --undecorated --fixed --posx=830 --posy=45",
         "tooltip": true,
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
