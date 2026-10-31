@@ -2,3 +2,8 @@
 .config/copyq/copyq_tab_JmNsaXBib2FyZA==.dat
 *.lock
 .config/copyq/copyq.lock
+.config/chromium/Default/History-journal
+.config/chromium/Default/History
+.config/mozilla/firefox/lwechfch.default-release/weave/failed/history.json
+.config/mozilla/firefox/lwechfch.default-release/weave/changes/history.json
+.config/mozilla/firefox/miw9xr89.default-release/formhistory.sqlite
