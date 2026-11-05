@@ -176,9 +176,9 @@ hl.env("HYPRCURSOR_SIZE", 24)
 
 hl.config({
   general = {
-    gaps_in = 5,
-    gaps_out = 9.5,
-    border_size = 2,
+    gaps_in = 10,
+    gaps_out = 10,
+    border_size = 1,
     -- https://wiki.hypr.land/Configuring/Variables/#variable-types for info about colors
     -- Set to true enable resizing windows by clicking and dragging on borders and gaps
     resize_on_border = true,
@@ -196,25 +196,25 @@ hl.config({
 
 hl.config({
   decoration = {
-    rounding = 5,
-    rounding_power = 5,
+    rounding = 3,
+    rounding_power = 20,
     -- Change transparency of focused and unfocused windows
     active_opacity = 1,
     inactive_opacity = 0.8,
     shadow = {
       enabled = true,
-      range = 100,
-      render_power = 100,
+      range = 5,
+      render_power = 1,
       color = "rgba(000000ff)",
     },
     -- https://wiki.hypr.land/Configuring/Variables/#blur
     blur = {
-      enabled = false,
-      size = 0,
-      passes = 1,
+      enabled = true,
+      size = 5,
+      passes = 0,
       new_optimizations = true,
-      vibrancy = 0.1696,
-      xray = true,
+      vibrancy = 15,
+      xray = false,
     },
   },
 })
@@ -845,7 +845,8 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
   hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
   hl.exec_cmd("waybar")
-  hl.exec_cmd("hyprpaper")
+  --hl.exec_cmd("hyprpaper")
+  hl.exec_cmd("awww-daemon")
   hl.exec_cmd("easyeffects --gapplication-service")
   hl.exec_cmd("kitty")
   hl.exec_cmd("udiskie")
