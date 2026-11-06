@@ -197,7 +197,7 @@ hl.config({
 hl.config({
   decoration = {
     rounding = 3,
-    rounding_power = 20,
+    rounding_power = 10,
     -- Change transparency of focused and unfocused windows
     active_opacity = 1,
     inactive_opacity = 0.8,
@@ -213,7 +213,7 @@ hl.config({
       size = 5,
       passes = 0,
       new_optimizations = true,
-      vibrancy = 15,
+      vibrancy = 0.85,
       xray = false,
     },
   },
@@ -836,6 +836,19 @@ hl.window_rule({
     class = ".*Calendar.*",
   },
   size = { 250, 275 },
+})
+
+hl.window_rule({
+  name = "immediate",
+  match = {
+    class = ".*Tank.*",
+  },
+})
+hl.window_rule({
+  name = "pin",
+  match = {
+    class = ".*Tank.*",
+  },
 })
 
 -- Autostart
