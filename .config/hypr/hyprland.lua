@@ -839,16 +839,16 @@ hl.window_rule({
 })
 
 hl.window_rule({
-  name = "immediate",
-  match = {
-    class = ".*Tank.*",
-  },
+  name = "float",
+  match = { class = "steam_proton" },
 })
 hl.window_rule({
-  name = "pin",
-  match = {
-    class = ".*Tank.*",
-  },
+  name = "noanim",
+  match = { class = "steam_proton" },
+})
+hl.window_rule({
+  name = "immediate",
+  match = { class = "steam_proton" },
 })
 
 -- Autostart
