@@ -106,7 +106,7 @@ local terminal = "kitty"
 
 local fileManager = "dolphin"
 
-local menu = "wofi" --"hyprlauncher"
+local menu = "rofi" --"wofi" --"hyprlauncher"
 
 local blocker = "hyprlock"
 
@@ -616,7 +616,7 @@ hl.bind("SUPER + Print", hl.dsp.exec_cmd("grim - | tee \"/home/rdf-2041/Изоб
 
 hl.bind(mainMod .. " + " .. "P", hl.dsp.window.pin())
 
-hl.bind("SUPER + R", hl.dsp.exec_cmd("killall wofi || wofi --show drun --allow-images --insensitive"))
+hl.bind("SUPER + R", hl.dsp.exec_cmd("killall rofi || rofi -show drun"))
 
 --bind = SUPER, W, exec, sh -c "/home/rdf-2041/.local/bin/anuclipt list | fuzzel --dmenu | /home/rdf-2041/.local/bin/anuclipt decode | wl-copy"
 

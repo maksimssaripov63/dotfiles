@@ -1,2 +1,97 @@
 
+//@theme "/usr/share/rofi/themes/arthur.rasi"
+
+//@theme "/usr/share/rofi/themes/fullscreen-preview.rasi"
+
+configuration {
+    /* Список всех режимов: Приложения, Окна, Проводник, Диспетчер задач */
+    modi: "drun,window,filebrowser,Процессы:~/dotfiles/.config/waybar/scripts/rofi_procs.sh";
+    
+    show-icons: true;
+    display-drun: " Приложения";
+    display-window: " Открытые окна";
+    display-filebrowser: " Проводник";
+    
+    /* Переключение между режимами по Ctrl+Tab или клику по вкладкам */
+    kb-mode-next: "Shift+Right,Control+Tab";
+    kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";
+}
+
+/* Отображение панели вкладок (mode-switcher) внизу или вверху окна */
+window {
+    width: 55%;
+}
+
+mainbox {
+    children: [ inputbar, mode-switcher, listview ];
+}
+
+mode-switcher {
+    enabled: true;
+    spacing: 10px;
+}
+
+button {
+    padding: 6px;
+    border-radius: 6px;
+}
+
+button selected {
+    background-color: #3b4252;
+    text-color: #eceff4;
+}
+
+
 @theme "/usr/share/rofi/themes/arthur.rasi"
+
+configuration {
+    modi: "drun,Окна:/home/rdf-2041/dotfiles/.config/waybar/scripts/rofi_windows.sh,filebrowser,Процессы:/home/rdf-2041/dotfiles/.config/waybar/scripts/rofi_procs.sh";
+    show-icons: true;
+    display-drun: "Приложения";
+    display-filebrowser: "Проводник";
+    
+    /* Клавиши переключения вкладок */
+    kb-mode-next: "Shift+Right,Control+Tab";
+    kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";
+}
+
+/* Главный вертикальный контейнер: сверху строка поиска, снизу — колонки */
+mainbox {
+    orientation: vertical;
+    children: [ inputbar, content-box ];
+    spacing: 10px;
+}
+
+/* Горизонтальный контейнер для размещения вкладок слева и списка справа */
+content-box {
+    orientation: horizontal;
+    children: [ mode-switcher, listview ];
+    spacing: 12px;
+}
+
+/* Левая колонка с категориями */
+mode-switcher {
+    enabled: true;
+    orientation: vertical;
+    width: 135px;        /* Уменьшаем общую ширину боковой панели */
+    spacing: 6px;        /* Расстояние между вкладками */
+    expand: false;       /* Запрещаем колонке растягиваться по ширине */
+}
+
+/* Компактные кнопки категорий */
+button {
+    enabled: true;
+    font: "JetBrainsMono Nerd Font 10"; /* Уменьшаем кегль шрифта (укажите свой шрифт) */
+    padding: 6px 8px;    /* Уменьшаем высоту и ширину самой плашки вкладки */
+    border-radius: 5px;
+    horizontal-align: 0.0;
+    expand: false;       /* Запрещаем вкладкам растягиваться на всю высоту окна */
+    cursor: pointer;
+}
+
+button selected {
+    background-color: #88c0d0;
+    text-color: #2e3440;
+}
+
+

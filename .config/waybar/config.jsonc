@@ -263,7 +263,7 @@
     "format": "   ", // Иконка меню (нужен Nerd Font). Можно заменить на другую, например "" или "⚙"
     "tooltip": true,
     "tooltip-format": "Диспетчер процессов",
-    "on-click": "~/dotfiles/.config/waybar/scripts/process_menu.sh",
+    "on-click": "rofi -show 'Процессы'",
     "on-click-right": "kitty sudo btop",
     "interval": "once"
   },
