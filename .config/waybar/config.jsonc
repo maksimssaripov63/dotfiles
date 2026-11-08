@@ -260,13 +260,14 @@
 
 
   "custom/procs": {
-    "format": "   ", // Иконка меню (нужен Nerd Font). Можно заменить на другую, например "" или "⚙"
+    "format": "  ",
     "tooltip": true,
-    "tooltip-format": "Диспетчер процессов",
+    "tooltip-format": "ЛКМ: btop | ПКМ: Список процессов",
+    "on-click-right": "kitty sudo btop",
     "on-click": "~/dotfiles/.config/waybar/scripts/process_menu.sh",
-    "on-click": "kitty btop",
     "interval": "once"
 },
+
 
   "custom/spaces": {
     "format": " "
