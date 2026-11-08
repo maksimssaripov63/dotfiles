@@ -106,7 +106,7 @@ local terminal = "kitty"
 
 local fileManager = "dolphin"
 
-local menu = "hyprlauncher"
+local menu = "wofi" --"hyprlauncher"
 
 local blocker = "hyprlock"
 
@@ -196,21 +196,21 @@ hl.config({
 
 hl.config({
   decoration = {
-    rounding = 3,
+    rounding = 10,
     rounding_power = 10,
     -- Change transparency of focused and unfocused windows
     active_opacity = 1,
     inactive_opacity = 0.8,
     shadow = {
       enabled = true,
-      range = 5,
+      range = 0,
       render_power = 1,
       color = "rgba(000000ff)",
     },
     -- https://wiki.hypr.land/Configuring/Variables/#blur
     blur = {
       enabled = true,
-      size = 5,
+      size = 15,
       passes = 0,
       new_optimizations = true,
       vibrancy = 0.85,
@@ -448,11 +448,11 @@ hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "Q", hl.dsp.window.close())
 
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "M", hl.dsp.exit())
 
-hl.bind(mainMod .. " + " .. "E", hl.dsp.exec_cmd("dolphin"))
+hl.bind(mainMod .. " + " .. "E", hl.dsp.exec_cmd(fileManager))
 
 hl.bind(mainMod .. " + " .. "V", hl.dsp.window.float())
 
-hl.bind(mainMod .. " + " .. "R", hl.dsp.exec_cmd("hyprlauncher"))
+hl.bind(mainMod .. " + " .. "R", hl.dsp.exec_cmd("menu"))
 
 hl.bind(mainMod .. " + " .. "P", hl.dsp.window.pseudo())
 
