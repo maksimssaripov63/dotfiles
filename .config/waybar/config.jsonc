@@ -154,7 +154,7 @@
         "format": " 󰣇 ",           // Стильная иконка меню приложений
         //"tooltip": true, 
         "exec": "hyprctl activewindow -j | jq -r '.title' 2>/dev/null",
-        "on-click": "wofi --show drun --allow-images --insensitive",
+        "on-click": "rofi -show drun",
         "tooltip-format": "<span font='9' rise='-4444'>{}</span>"
     },
 
