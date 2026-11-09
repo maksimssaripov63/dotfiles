@@ -159,9 +159,9 @@
     },
 
     "custom/add_workspace": {
-        "format": " + ", 
-        "on-click": "hl.dsp.focus({ workspace = \"+1\" })",
-        "tooltip": false
+      "format": " + ",
+      "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"+1\" })'",
+      "tooltip": false
     },
 
     "backlight": {
@@ -270,11 +270,6 @@
 
   "custom/spaces": {
     "format": " "
-  },
-
-  "hyprland/window": {
-    //"format": "{}"   // <--- это значение по умолчанию
-    "format": "<span font='9' rise='-4444'>{}</span>"
   }
 
 
