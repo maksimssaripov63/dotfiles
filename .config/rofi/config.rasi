@@ -47,8 +47,9 @@ button selected {
 configuration {
     modi: "drun,Окна:/home/rdf-2041/dotfiles/.config/waybar/scripts/rofi_windows.sh,filebrowser,Процессы:/home/rdf-2041/dotfiles/.config/waybar/scripts/rofi_procs.sh";
     show-icons: true;
-    display-drun: "Приложения";
-    display-filebrowser: "Проводник";
+    display-drun: " Приложения";
+    display-window: " Открытые окна";
+    display-filebrowser: " Проводник";
     
     /* Клавиши переключения вкладок */
     kb-mode-next: "Shift+Right,Control+Tab";
@@ -85,7 +86,7 @@ button {
     padding: 6px 8px;    /* Уменьшаем высоту и ширину самой плашки вкладки */
     border-radius: 5px;
     horizontal-align: 0.0;
-    expand: false;       /* Запрещаем вкладкам растягиваться на всю высоту окна */
+    expand: true;       /* Разрешает вкладкам растягиваться на всю высоту окна */
     cursor: pointer;
 }
 
