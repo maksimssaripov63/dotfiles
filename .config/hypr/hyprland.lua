@@ -616,7 +616,7 @@ hl.bind("SUPER + Print", hl.dsp.exec_cmd("grim - | tee \"/home/rdf-2041/Изоб
 
 hl.bind(mainMod .. " + " .. "P", hl.dsp.window.pin())
 
-hl.bind("SUPER + R", hl.dsp.exec_cmd("killall rofi || rofi -show drun"))
+hl.bind("SUPER + R", hl.dsp.exec_cmd("killall rofi || rofi -show drun -theme-str 'window { location: center; anchor: center; y-offset: 0px; }'"))
 
 --bind = SUPER, W, exec, sh -c "/home/rdf-2041/.local/bin/anuclipt list | fuzzel --dmenu | /home/rdf-2041/.local/bin/anuclipt decode | wl-copy"
 

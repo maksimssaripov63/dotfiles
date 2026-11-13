@@ -17,11 +17,6 @@ configuration {
     kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";
 }
 
-/* Отображение панели вкладок (mode-switcher) внизу или вверху окна */
-window {
-    width: 55%;
-}
-
 mainbox {
     children: [ inputbar, mode-switcher, listview ];
 }
@@ -42,7 +37,7 @@ button selected {
 }
 
 
-@theme "/usr/share/rofi/themes/arthur.rasi"
+//@theme "/usr/share/rofi/themes/arthur.rasi"
 
 configuration {
     modi: "drun,Окна:/home/rdf-2041/dotfiles/.config/waybar/scripts/rofi_windows.sh,filebrowser,Процессы:/home/rdf-2041/dotfiles/.config/waybar/scripts/rofi_procs.sh";
@@ -95,4 +90,16 @@ button selected {
     text-color: #2e3440;
 }
 
+window {
+    fullscreen: false;
+    location: center;
+    anchor: center;
+    x-offset: 0px;
+    y-offset: 0px;
+    width: 55%;
+}
 
+
+//@theme "/usr/share/rofi/themes/Adapta-Nokto.rasi"
+
+@theme "/usr/share/rofi/themes/fancy.rasi"

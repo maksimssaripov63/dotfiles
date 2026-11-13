@@ -314,3 +314,5 @@ export COPYQ_SESSION_VERSION=1
 alias tmog="tmog-task-manager &"
 
 alias plasma="dbus-run-session startplasma-wayland"
+
+alias windows="sdl-freerdp3 /v:192.168.122.110 /u:rdf /p:rdf /cert:ignore /gfx:avc444 /dynamic-resolution /scale-desktop:125 +clipboard"

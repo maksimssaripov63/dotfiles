@@ -73,13 +73,12 @@
 
 
     "custom/language": {
-        // Скрипт мгновенно вытаскивает активный язык системы, берет первые 2 буквы и делает их заглавными (EN/RU)
         "exec": "hyprctl devices -j | jq -r '.keyboards[] | select(.main == true) | .active_keymap' | cut -c1-2 | tr '[:lower:]' '[:upper:]'",
-        "interval": 0,
-        "format": "   {}",
+        "interval": 0.1,
+        "format": "  {}",
         "tooltip": false,
-        "on-click-right": "echo 'English (EN)\nРусский (RU)' | wofi --dmenu --prompt 'Выберите язык / Select language' | grep -q 'Русский' && hyprctl switchxkblayout all 1 || hyprctl switchxkblayout all 0",
-        "on-click": "hyprctl switchxkblayout all next"
+        "on-click": "hyprctl switchxkblayout all next",
+        "on-click-right": "printf 'English (EN)\\nРусский (RU)' | rofi -dmenu -i -p 'Выберите язык' | grep -q 'Русский' && hyprctl switchxkblayout all 1 || hyprctl switchxkblayout all 0"
     },
 
 
@@ -154,7 +153,7 @@
         "format": " 󰣇 ",           // Стильная иконка меню приложений
         //"tooltip": true, 
         "exec": "hyprctl activewindow -j | jq -r '.title' 2>/dev/null",
-        "on-click": "rofi -show drun",
+        "on-click": "rofi -show drun -theme-str 'window { location: center; anchor: center; y-offset: 0px; }'",
         "tooltip-format": "<span font='9' rise='-4444'>{}</span>"
     },
 
