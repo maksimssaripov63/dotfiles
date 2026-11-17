@@ -442,7 +442,7 @@ hl.bind(mainMod .. " + " .. "Return", hl.dsp.exec_cmd("kitty"))
 
 ----config-file=/home/rdf-2041/.config/ghostty/config.ghostty
 
-hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "C", hl.dsp.exec_cmd('sh -c "hypctl reload; pkill waybar; waybar; sudo ~/dotfiles/easy-switcher/./easy-switcher -r"'))
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "C", hl.dsp.exec_cmd('sh -c "hypctl reload; ags quit; ags run"'))
 
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "Q", hl.dsp.window.close())
 
@@ -857,7 +857,7 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("copyq --start-server")
   hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
   hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
-  hl.exec_cmd("waybar")
+  hl.exec_cmd("ags run")
   --hl.exec_cmd("hyprpaper")
   hl.exec_cmd("awww-daemon")
   hl.exec_cmd("easyeffects --gapplication-service")
