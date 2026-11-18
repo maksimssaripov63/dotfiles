@@ -96,17 +96,26 @@ window.Bar {
         color: #89b4fa;
         font-size: 14px;
     }
-    .tray menubutton {
-        background: transparent;
-        border: none;
-        box-shadow: none;
-        padding: 0px 3px;
+.tray {
         margin: 0px;
-        min-height: 0px;
-        min-width: 0px;
+        padding: 0px;
 
-        &:hover {
-            background-color: rgba(205, 214, 244, 0.12);
+        menubutton,
+        .tray-item {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0px 2px;
+            margin: 0px;
+            min-width: 0px;
+            min-height: 0px;
+
+            button {
+                padding: 0px 2px;
+                margin: 0px;
+                min-width: 0px;
+                min-height: 0px;
+            }
         }
     }
 }
