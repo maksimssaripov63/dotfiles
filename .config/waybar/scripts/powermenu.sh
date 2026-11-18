@@ -8,7 +8,7 @@ screenoff="Выключить дисплей"
 logout="Выход"
 
 # Вызываем кастомное окно rofi
-options="$shutdown\n$reboot\n$lock\n$suspend\n$logout\n$screenoff"
+options="$shutdown\n\n$lock\n$suspend\n$logout\n$screenoff"
 CHOSEN=$(echo -e "$options" | rofi -dmenu -theme ~/.config/rofi/powermenu.rasi -p "Питание:")
 
 case "$CHOSEN" in
@@ -22,7 +22,7 @@ $screenoff) # 3. ПРОПИСЫВАЕМ СИЛОВОЙ ВЫКЛЮЧАТЕЛЬ Э
   hyprlisten_msg dispatch dpms off 2>/dev/null || hyprctl dispatch 'hl.dsp.dpms({ action = "disable" })'
   ;;
 $reboot)
-  systemctl reboot
+  systemctl poweroff
   ;;
 $lock)
   hyprlock

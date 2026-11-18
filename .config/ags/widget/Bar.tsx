@@ -4,6 +4,8 @@ import { execAsync } from "ags/process";
 import { createPoll } from "ags/time";
 // import Tray from "gi://AstalTray"
 import { createBinding, createState, For } from "gnim";
+import Tray from "gi://AstalTray"
+
 
 const [showDate, setShowDate] = createState(false);
 const date = createPoll("", 5000, "date '+ %d-%m-%Y (%A)'");
@@ -157,19 +159,36 @@ function SysTray() {
       <For each={items}>
         {(item) => (
           <menubutton
+            cssClasses={["tray-item"]}
             tooltipMarkup={createBinding(item, "tooltipMarkup")}
             menuModel={createBinding(item, "menuModel")}
             $={(self) => {
               self.insert_action_group("dbusmenu", item.actionGroup);
+              const id = item.connect("notify::action-group", () => {
+                self.insert_action_group("dbusmenu", item.actionGroup);
+              });
+              self.connect("destroy", () => item.disconnect(id));
+
+              const lclick = new Gtk.GestureClick({
+                button: 1,
+                propagationPhase: Gtk.PropagationPhase.CAPTURE,
+              });
+              lclick.connect("pressed", () => {
+                if (item.isMenu) self.popup();
+                else item.activate(0, 0);
+              });
+              self.add_controller(lclick);
             }}
           >
-            <image gicon={createBinding(item, "gicon")} />
+            <image gicon={createBinding(item, "gicon")} pixelSize={14} />
           </menubutton>
         )}
       </For>
     </box>
   );
 }
+
+
 
 // --- Главная верхняя панель ---
 export default function Bar(gdkmonitor: Gdk.Monitor) {
@@ -215,7 +234,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
           </button>
 
           {/* Системный трей */}
-          {/* <SysTray /> */}
+          <SysTray />
 
           {/* Рабочие столы Hyprland (без пересоздания кнопок) */}
           <box cssClasses={["workspaces"]} spacing={2}>

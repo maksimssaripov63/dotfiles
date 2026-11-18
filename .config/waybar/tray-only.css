@@ -1,0 +1,13 @@
+* {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+}
+window#waybar {
+    background-color: transparent;
+}
+#tray {
+    padding: 2px 4px;
+}

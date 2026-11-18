@@ -1,0 +1,13 @@
+{
+    "layer": "overlay",
+    "position": "top",
+    "exclusive": false,
+    "margin-left": 58,
+    "margin-top": 0,
+    "height": 22,
+    "modules-left": ["tray"],
+    "tray": {
+        "icon-size": 14,
+        "spacing": 6
+    }
+}
