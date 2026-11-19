@@ -57,6 +57,7 @@ window.Bar {
     .workspaces button {
         padding: 0px 7px;
         color: #a6adc8;
+        border-radius: 0px;
 
         &.focused {
             background-color: #00ffff;
