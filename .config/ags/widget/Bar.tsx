@@ -76,20 +76,20 @@ const ram = createPoll("RAM:0G", 2000, [
 ]);
 
 // --- 6. Вывод звука (OUT) и Микрофон (INP) ---
-const audioOut = createPoll("OUT: 0%", 250, [
+const audioOut = createPoll("OUT: 0%", 100, [
   "sh",
   "-c",
   'wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk \'{if ($3 == "[MUTED]") print "OUT: Выкл"; else printf "OUT: %.0f%%", $2 * 100}\'',
 ]);
 
-const audioIn = createPoll("INP: Вкл", 300, [
+const audioIn = createPoll("INP: Вкл", 100, [
   "sh",
   "-c",
   'wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk \'{if ($3 == "[MUTED]") print "INP: Выкл"; else print "INP: Вкл"}\'',
 ]);
 
 // --- 7. Подсветка (LIGHT) ---
-const backlight = createPoll("LIGHT:100%", 300, [
+const backlight = createPoll("LIGHT:100%", 100, [
   "sh",
   "-c",
   'cur=$(cat /sys/class/backlight/intel_backlight/brightness 2>/dev/null | head -n1); max=$(cat /sys/class/backlight/intel_backlight/max_brightness 2>/dev/null | head -n1); if [ -n "$cur" ] && [ -n "$max" ]; then awk -v c=$cur -v m=$max \'BEGIN {printf "LIGHT:%.0f%%", (c/m)*100}\'; fi',
@@ -148,6 +148,18 @@ const wsState = createPoll(
     }
   },
 );
+
+const btopTooltip = createPoll("Загрузка...", 2000, [
+    "sh",
+    "-c",
+    "python3 ~/.config/ags/scripts/sysinfo_btop.py"
+]);
+
+const memTooltip = createPoll("Загрузка...", 2000, [
+    "sh",
+    "-c",
+    "python3 ~/.config/ags/scripts/meminfo_btop.py"
+]);
 
 // --- Компонент системного трея (GTK4) ---
 function SysTray() {
@@ -382,23 +394,28 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
 
         <box $type="end" spacing={8}>
           <button
-            cssClasses={["cpu"]}
-            onClicked={() => execAsync("tmog-task-manager")}
-          >
-            <label label={cpu} />
-          </button>
+    cssClasses={["cpu"]}
+    tooltipMarkup={btopTooltip}
+    onClicked={() => execAsync("kitty -e btop")}
+>
+    <label label={cpu} />
+</button>
+<button
+    cssClasses={["gpu"]}
+    tooltipMarkup={btopTooltip}
+    onClicked={() => execAsync("kitty -e btop")}
+>
+    <label label={gpu} />
+</button>
+
           <button
-            cssClasses={["gpu"]}
-            onClicked={() => execAsync("tmog-task-manager")}
-          >
-            <label label={gpu} />
-          </button>
-          <button
-            cssClasses={["memory"]}
-            onClicked={() => execAsync("tmog-task-manager")}
-          >
-            <label label={ram} />
-          </button>
+    cssClasses={["memory"]}
+    tooltipMarkup={memTooltip}
+    onClicked={() => execAsync("kitty -e btop")}
+>
+    <label label={ram} />
+</button>
+
 
           <button
             cssClasses={["volume"]}
