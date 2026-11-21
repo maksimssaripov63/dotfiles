@@ -6,7 +6,6 @@ import { createPoll } from "ags/time";
 import { createBinding, createState, For } from "gnim";
 import Tray from "gi://AstalTray"
 
-
 const [showDate, setShowDate] = createState(false);
 const date = createPoll("", 5000, "date '+ %d-%m-%Y (%A)'");
 const timeText = createPoll("", 1000, "date '+ %H:%M:%S'");
