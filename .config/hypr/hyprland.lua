@@ -21,9 +21,172 @@ hl.env("GTK_THEME", "Adwaita:dark")
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 
 hl.config({
-  -- Использовать нативный блок exec_always для выполнения системной команды загрузки плагина
-  exec_always = {
-    "hyprctl plugin load " .. os.getenv("HOME") .. "/Downloads/Hyprspace/Hyprspace.so",
+  plugin = {
+    overview = {
+      panelColor = "#1e1e2e",
+      panelBorderColor = "#cba6f7",
+      workspaceActiveBackground = "rgba(49, 50, 68, 0.8)",
+      workspaceActiveBorder = "rgb(203, 166, 247)",
+      onBottom = false,
+      autoDrag = true,
+      -- Add other overview settings here
+    },
+  },
+})
+
+hl.config({
+  plugin = {
+    dynamic_cursors = {
+
+      -- enables the plugin
+      enabled = true,
+
+      -- sets the cursor behaviour, supports these values:
+      -- tilt    - tilt the cursor based on x-velocity
+      -- rotate  - rotate the cursor based on movement direction
+      -- stretch - stretch the cursor shape based on direction and velocity
+      -- none    - do not change the cursor's behaviour
+      mode = "tilt",
+
+      -- minimum angle difference in degrees after which the shape is changed
+      -- smaller values are smoother, but more expensive for hw cursors
+      threshold = 2,
+
+      -- for mode = "rotate"
+      rotate = {
+
+        -- length in px of the simulated stick used to rotate the cursor
+        -- most realistic if this is your actual cursor size
+        length = 20,
+
+        -- clockwise offset applied to the angle in degrees
+        -- this will apply to ALL shapes
+        offset = 0.0,
+      },
+
+      -- for mode = "tilt"
+      tilt = {
+
+        -- controls how powerful the tilt is, the lower, the more power
+        -- this value controls at which speed (px/s) the full tilt is reached
+        limit = 5000,
+
+        -- relationship between speed and tilt, supports these values:
+        -- linear             - a linear function is used
+        -- quadratic          - a quadratic function is used (most realistic to actual air drag)
+        -- negative_quadratic - negative version of the quadratic one, feels more aggressive
+        -- see `activation` in `src/mode/utils.cpp` for how exactly the calculation is done
+        activation = "negative_quadratic",
+
+        -- time window (ms) over which the speed is calculated
+        -- higher values will make slow motions smoother but more delayed
+        window = 100,
+
+        -- full tilt for each side (°)
+        full = 60,
+      },
+
+      -- for mode = "stretch"
+      stretch = {
+
+        -- controls how much the cursor is stretched
+        -- this value controls at which speed (px/s) the full stretch is reached
+        -- the full stretch being twice the original length
+        limit = 3000,
+
+        -- relationship between speed and stretch amount, supports these values:
+        -- linear             - a linear function is used
+        -- quadratic          - a quadratic function is used
+        -- negative_quadratic - negative version of the quadratic one, feels more aggressive
+        -- see `activation` in `src/mode/utils.cpp` for how exactly the calculation is done
+        activation = "quadratic",
+
+        -- time window (ms) over which the speed is calculated
+        -- higher values will make slow motions smoother but more delayed
+        window = 100,
+      },
+
+      -- configure shake to find
+      -- magnifies the cursor if its is being shaken
+      shake = {
+
+        -- enables shake to find
+        enabled = true,
+
+        -- controls how soon a shake is detected
+        -- lower values mean sooner
+        threshold = 6.0,
+
+        -- magnification level immediately after shake start
+        base = 4.0,
+        -- magnification increase per second when continuing to shake
+        speed = 4.0,
+        -- how much the speed is influenced by the current shake intensity
+        influence = 0.0,
+
+        -- maximal magnification the cursor can reach
+        -- values below 1 disable the limit (e.g. 0)
+        limit = 0.0,
+
+        -- time in milliseconds the cursor will stay magnified after a shake has ended
+        timeout = 2000,
+
+        -- show cursor behaviour `tilt`, `rotate`, etc. while shaking
+        effects = false,
+
+        -- enable ipc events for shake
+        -- see the `ipc` section below
+        ipc = false,
+      },
+
+      -- use hyprcursor to get a higher resolution texture when the cursor is magnified
+      -- see the `hyprcursor` section below
+      hyprcursor = {
+
+        -- use nearest-neighbour (pixelated) scaling when magnifying beyond texture size
+        -- this will also have effect without hyprcursor support being enabled
+        -- 0 - never use pixelated scaling
+        -- 1 - use pixelated when no highres image
+        -- 2 - always use pixelated scaling
+        nearest = 1,
+
+        -- enable dedicated hyprcursor support
+        enabled = true,
+
+        -- resolution in pixels to load the magnified shapes at
+        -- be warned that loading a very high-resolution image will take a long time and might impact memory consumption
+        -- -1 means we use [normal cursor size] * [shake:base option]
+        resolution = -1,
+
+        -- shape to use when clientside cursors are being magnified
+        -- see the shape-name property of shape rules for possible names
+        -- specifying clientside will use the actual shape, but will be pixelated
+        fallback = "clientside",
+      },
+    },
+  },
+})
+
+hl.config({
+  plugin = {
+    hypr_edgehover = {
+      enabled = 1,
+      edges = "lrtb",
+      inset = 1,
+      max_distance = 0,
+      keyboard_focus = -1,
+      gap_pass = "hover,click,scroll,keyboard",
+      layer_pass = "hover,keyboard",
+      layer_namespaces = "",
+      overhang_pass = "hover,keyboard",
+      overhang_threshold = 8,
+      overhang_edge_width = 0,
+      steal_edge_width = 2,
+      zones_top = "0-100",
+      zones_bottom = "0-100",
+      zones_left = "0-100",
+      zones_right = "0-100",
+    },
   },
 })
 
@@ -177,7 +340,7 @@ hl.env("HYPRCURSOR_SIZE", 24)
 hl.config({
   general = {
     gaps_in = 10,
-    gaps_out = 10,
+    gaps_out = 20,
     border_size = 1,
     -- https://wiki.hypr.land/Configuring/Variables/#variable-types for info about colors
     -- Set to true enable resizing windows by clicking and dragging on borders and gaps
@@ -872,7 +1035,18 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("hypridle")
   hl.exec_cmd("dunst")
   hl.exec_cmd("blueman-applet")
+  hl.exec_cmd("hyprpm reload -n")
 end)
 
 -- hyprmon: managed monitor profile include
 require("hyprmon")
+
+-- Toggle overview on the current monitor using SUPER + TAB
+hl.bind("SUPER + TAB", function()
+  hl.plugin.overview.toggle()
+end, { description = "Toggle Hyprspace overview" })
+
+-- Toggle overview on all monitors
+hl.bind("SUPER + SHIFT + TAB", function()
+  hl.plugin.overview.toggle("all")
+end, { description = "Toggle Hyprspace overview on all monitors" })

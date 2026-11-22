@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os, time, subprocess
+import os, time, glob, subprocess
 
 def bar(pct, width=10):
     pct = max(0.0, min(100.0, pct))
@@ -19,15 +19,38 @@ def read_stat():
                 res[parts[0]] = (idle, total)
     return res
 
-s1 = read_stat()
+def read_rapl():
+    res = {}
+    for p in glob.glob("/sys/class/powercap/intel-rapl*"):
+        nf, ef = os.path.join(p, "name"), os.path.join(p, "energy_uj")
+        if os.path.exists(nf) and os.path.exists(ef):
+            try:
+                res[open(nf).read().strip()] = int(open(ef).read().strip())
+            except Exception:
+                pass
+    return res
+
+s1, r1 = read_stat(), read_rapl()
+t1 = time.monotonic()
 time.sleep(0.15)
-s2 = read_stat()
+s2, r2 = read_stat(), read_rapl()
+dt_sec = max(0.001, time.monotonic() - t1)
 
 usage = {}
 for k in s1:
     dt = s2[k][1] - s1[k][1]
     di = s2[k][0] - s1[k][0]
     usage[k] = 100.0 * (1.0 - di / dt) if dt > 0 else 0.0
+
+cpu_w = ""
+if "package-0" in r1 and "package-0" in r2:
+    w = max(0.0, (r2["package-0"] - r1["package-0"]) / 1e6 / dt_sec)
+    cpu_w = f' <span foreground="#74c7ec">{w:.1f}W</span>'
+
+gpu_w = ""
+if "uncore" in r1 and "uncore" in r2:
+    w = max(0.0, (r2["uncore"] - r1["uncore"]) / 1e6 / dt_sec)
+    gpu_w = f' <span foreground="#74c7ec">{w:.2f}W</span>'
 
 freqs = []
 for i in range(20):
@@ -60,7 +83,8 @@ if pkg_temp == "N/A":
 with open("/proc/loadavg") as f:
     la = " ".join(f.read().split()[:3])
 
-gpu0_line = "<b>GPU0</b>  N/A"
+# GPU0 (NVIDIA)
+gpu0_line = '<b>GPU0</b> <span foreground="#6c7086">NVIDIA: sleep (RTD3)</span>'
 try:
     nv = subprocess.check_output(
         ["nvidia-smi", "--query-gpu=utilization.gpu,memory.used,memory.total,temperature.gpu,power.draw", "--format=csv,noheader,nounits"],
@@ -79,9 +103,26 @@ try:
 except Exception:
     pass
 
+# GPU1 (Intel iGPU)
+igpu_pct = 0.0
+igpu_mhz = ""
+for card in sorted(glob.glob("/sys/class/drm/card[0-9]")):
+    vendor = os.path.join(card, "device/vendor")
+    if os.path.exists(vendor) and "0x8086" in open(vendor).read():
+        cur_f = os.path.join(card, "gt_cur_freq_mhz")
+        max_f = os.path.join(card, "gt_max_freq_mhz")
+        if os.path.exists(cur_f) and os.path.exists(max_f):
+            cf = int(open(cur_f).read().strip())
+            mf = max(1, int(open(max_f).read().strip()))
+            igpu_pct = min(100.0, (cf / mf) * 100.0)
+            igpu_mhz = f' <span foreground="#cdd6f4">{cf}MHz</span>'
+        break
+
+gpu1_line = f'<b>GPU1</b> {bar(igpu_pct, 22)} <span foreground="#a6e3a1">{igpu_pct:3.0f}%</span>{igpu_mhz}{gpu_w}'
+
 lines = []
 lines.append(f'<span foreground="#6c7086">┌─</span> <b>13th Gen i7-13650HX</b> <span foreground="#6c7086">──────────────────</span> <b>{avg_mhz} MHz</b> <span foreground="#6c7086">─┐</span>')
-lines.append(f'<b>CPU</b>  {bar(usage.get("cpu", 0), 24)} <span foreground="#a6e3a1">{usage.get("cpu", 0):3.0f}%</span>   <span foreground="#89b4fa">{pkg_temp}</span>')
+lines.append(f'<b>CPU</b>  {bar(usage.get("cpu", 0), 22)} <span foreground="#a6e3a1">{usage.get("cpu", 0):3.0f}%</span>   <span foreground="#89b4fa">{pkg_temp}</span>{cpu_w}')
 
 for row in range(10):
     c_left, c_right = row, row + 10
@@ -98,5 +139,6 @@ for row in range(10):
 lines.append(f'<span foreground="#6c7086">├───────────────────────────────────────────────────┤</span>')
 lines.append(f'Load avg: <span foreground="#f9e2af">{la}</span>')
 lines.append(gpu0_line)
+lines.append(gpu1_line)
 
 print('<span font_family="JetBrainsMono Nerd Font" size="9500">' + "\n".join(lines) + '</span>')

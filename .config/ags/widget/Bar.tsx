@@ -63,10 +63,11 @@ const cpu = createPoll("CPU:0%", 2000, [
 ]);
 
 const gpu = createPoll("GPU:0%", 2000, [
-  "sh",
-  "-c",
-  'nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits 2>/dev/null | awk \'{print "GPU:" $1 "%"}\'',
-]);
+    "sh",
+    "-c",
+    "if grep -q suspended /sys/class/drm/card*/device/power/runtime_status 2>/dev/null && ! nvidia-smi -L >/dev/null 2>&1; then echo 'GPU:0%'; else nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits 2>/dev/null | head -n1 | awk '/^[0-9]+$/ {printf \"GPU:%s%%\", $1} !/^[0-9]+$/ {print \"GPU:0%\"}'; fi"
+])
+
 
 const ram = createPoll("RAM:0G", 2000, [
   "sh",
