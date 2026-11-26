@@ -28,6 +28,22 @@ const btData = createPoll(
   },
 );
 
+const mprisDetail = createPoll(
+  { title: "", pos: 0, len: 100, timeStr: "00:00 / 00:00", players: [] as { idx: number; name: string; title: string; active: boolean }[] },
+  500,
+  [
+    "sh", "-c",
+    'players=($(playerctl --list-all 2>/dev/null)); count=${#players[@]}; if [ $count -eq 0 ]; then echo \'{"title":"","pos":0,"len":100,"timeStr":"00:00 / 00:00","players":[]}\'; exit 0; fi; idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); [ $idx -ge $count ] && idx=0; ap=${players[$idx]}; title=$(playerctl -p "$ap" metadata --format "{{title}} - {{artist}}" 2>/dev/null | sed \'s/"/\\\\"/g\'); pos=$(playerctl -p "$ap" position 2>/dev/null | awk \'{print int($1)}\'); len=$(playerctl -p "$ap" metadata mpris:length 2>/dev/null | awk \'{print int($1/1000000)}\'); [ -z "$pos" ] && pos=0; [ -z "$len" ] || [ "$len" -le 0 ] && len=100; tstr=$(printf "%02d:%02d / %02d:%02d" $((pos/60)) $((pos%60)) $((len/60)) $((len%60))); plist=""; for i in "${!players[@]}"; do p=${players[$i]}; pt=$(playerctl -p "$p" metadata --format "{{title}}" 2>/dev/null | cut -c1-28 | sed \'s/"/\\\\"/g\'); act=$([ "$i" -eq "$idx" ] && echo true || echo false); [ -n "$plist" ] && plist="$plist,"; plist="$plist{\\"idx\\":$i,\\"name\\":\\"$p\\",\\"title\\":\\"$pt\\",\\"active\\":$act}"; done; echo "{\\"title\\":\\"$title\\",\\"pos\\":$pos,\\"len\\":$len,\\"timeStr\\":\\"$tstr\\",\\"players\\":[$plist]}"',
+  ],
+  (o) => {
+    try { return JSON.parse(o); } catch { return { title: "", pos: 0, len: 100, timeStr: "00:00 / 00:00", players: [] }; }
+  },
+);
+
+const playerNames = createPoll([] as string[], 2000, [
+  "sh", "-c", "playerctl --list-all 2>/dev/null || true",
+], (o) => o.trim().split("\n").filter(Boolean));
+
 // --- Вспомогательный запуск команд с обработкой ошибок ---
 const run = (cmd: string) => execAsync(["sh", "-c", cmd]).catch(() => {});
 
@@ -94,6 +110,31 @@ const backlight = createPoll("LIGHT:100%", 100, [
   "-c",
   'cur=$(cat /sys/class/backlight/intel_backlight/brightness 2>/dev/null | head -n1); max=$(cat /sys/class/backlight/intel_backlight/max_brightness 2>/dev/null | head -n1); if [ -n "$cur" ] && [ -n "$max" ]; then awk -v c=$cur -v m=$max \'BEGIN {printf "LIGHT:%.0f%%", (c/m)*100}\'; fi',
 ]);
+
+// --- Состояния для рабочих ползунков в поповерах ---
+const volVal = createPoll(0.5, 300, [
+  "sh", "-c",
+  "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print ($2 > 1 ? 1 : $2)}'",
+], (o) => parseFloat(o) || 0);
+
+const micVal = createPoll(0.5, 500, [
+  "sh", "-c",
+  "wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{print ($2 > 1 ? 1 : $2)}'",
+], (o) => parseFloat(o) || 0);
+
+const lightVal = createPoll(0.8, 300, [
+  "sh", "-c",
+  "awk -v c=$(cat /sys/class/backlight/intel_backlight/brightness) -v m=$(cat /sys/class/backlight/intel_backlight/max_brightness) 'BEGIN {print c/m}'",
+], (o) => parseFloat(o) || 0.5);
+
+const btDevices = createPoll([], 3000, [
+  "sh", "-c",
+  "bluetoothctl devices Paired 2>/dev/null | while read -r _ mac name; do conn=$(bluetoothctl info \"$mac\" 2>/dev/null | grep -q 'Connected: yes' && echo 1 || echo 0); echo \"$mac|$conn|$name\"; done",
+], (o) => o.trim().split("\n").filter(Boolean).map((l) => {
+  const [mac, conn, ...rest] = l.split("|");
+  return { mac, connected: conn === "1", name: rest.join("|") };
+}));
+
 
 // --- 8. Ваш кастомный USB-виджет ---
 const usbData = createPoll(
@@ -309,48 +350,115 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
         </box>
 
         <box $type="center" spacing={10}>
-          <button
-            cssClasses={["mpris"]}
-            visible={mprisData((m) => m.text !== "")}
-            tooltipText={mprisData((m) => m.tooltip)}
-            onClicked={() =>
-              run(
-                'players=($(playerctl --list-all 2>/dev/null)); idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); active_player=${players[$idx]}; [ -n "$active_player" ] && playerctl -p "$active_player" play-pause',
-              )
-            }
+{(() => {
+  const mprisPopover = (
+    <popover>
+      <box orientation={Gtk.Orientation.VERTICAL} spacing={8} cssClasses={["popup-box"]}>
+        <label label={mprisDetail((d) => d.title)} wrap maxWidthChars={36} />
+
+        {/* Ползунок перемотки */}
+        <box spacing={8}>
+          <slider
+            hexpand
+            widthRequest={200}
+            min={0}
+            max={mprisDetail((d) => d.len)}
+            step={1}
+            value={mprisDetail((d) => d.pos)}
             $={(self) => {
-              const rclick = new Gtk.GestureClick({ button: 3 });
-              rclick.connect("pressed", () =>
-                run(
-                  'players=($(playerctl --list-all 2>/dev/null)); idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); active_player=${players[$idx]}; [ -n "$active_player" ] && playerctl -p "$active_player" next',
-                ),
-              );
-              self.add_controller(rclick);
-
-              const mclick = new Gtk.GestureClick({ button: 2 });
-              mclick.connect("pressed", () =>
-                run(
-                  'players=($(playerctl --list-all 2>/dev/null)); idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); active_player=${players[$idx]}; [ -n "$active_player" ] && playerctl -p "$active_player" previous',
-                ),
-              );
-              self.add_controller(mclick);
-
-              const scroll = new Gtk.EventControllerScroll({
-                flags: Gtk.EventControllerScrollFlags.VERTICAL,
-                propagationPhase: Gtk.PropagationPhase.CAPTURE,
+              self.connect("change-value", (_, _scroll, val) => {
+                const sec = Math.max(0, Math.round(val));
+                run(`players=($(playerctl --list-all 2>/dev/null)); idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); playerctl -p "\${players[$idx]}" position ${sec}`);
+                return false;
               });
-
-              scroll.connect("scroll", (_, _dx, dy) => {
-                const dir = dy < 0 ? "+ 1" : "- 1 + count";
-                run(
-                  `players=($(playerctl --list-all 2>/dev/null)); count=\${#players[@]}; if [ $count -gt 1 ]; then idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); idx=$(( (idx ${dir}) % count )); echo $idx > /tmp/active_player_idx; fi`,
-                );
-              });
-              self.add_controller(scroll);
             }}
-          >
-            <label label={mprisData((m) => m.text)} />
+          />
+          <label label={mprisDetail((d) => d.timeStr)} />
+        </box>
+
+        {/* Кнопки управления */}
+        <box spacing={12} halign={Gtk.Align.CENTER}>
+          <button onClicked={() => run('players=($(playerctl --list-all 2>/dev/null)); idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); playerctl -p "${players[$idx]}" previous')}>
+            <label label="  " />
           </button>
+          <button onClicked={() => run('players=($(playerctl --list-all 2>/dev/null)); idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); playerctl -p "${players[$idx]}" play-pause')}>
+            <label label="  " />
+          </button>
+          <button onClicked={() => run('players=($(playerctl --list-all 2>/dev/null)); idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); playerctl -p "${players[$idx]}" next')}>
+            <label label="  " />
+          </button>
+        </box>
+
+        {/* Стабильный список плееров */}
+        <box orientation={Gtk.Orientation.VERTICAL} spacing={4}>
+          <For each={playerNames}>
+            {(pname, idx) => (
+              <button
+                cssClasses={mprisDetail((d) => (d.activeIdx === idx.get() ? ["focused"] : []))}
+                onClicked={() => run(`echo ${idx.get()} > /tmp/active_player_idx`)}
+              >
+                <label label={mprisDetail((d) => `${d.activeIdx === idx.get() ? "▶ " : ""}${pname.split('.')[2] || pname}`)} />
+              </button>
+            )}
+          </For>
+        </box>
+      </box>
+    </popover>
+  ) as Gtk.Popover;
+
+  return (
+    <button
+      cssClasses={["mpris"]}
+      visible={mprisData((m) => m.text !== "")}
+      tooltipText={mprisData((m) => m.tooltip)}
+      onClicked={() =>
+        run(
+          'players=($(playerctl --list-all 2>/dev/null)); idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); active_player=${players[$idx]}; [ -n "$active_player" ] && playerctl -p "$active_player" play-pause',
+        )
+      }
+      $={(self) => {
+        mprisPopover.set_parent(self);
+        self.connect("destroy", () => mprisPopover.unparent());
+
+        const rclick = new Gtk.GestureClick({ button: 3 });
+        rclick.connect("pressed", () =>
+          run(
+            'players=($(playerctl --list-all 2>/dev/null)); idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); active_player=${players[$idx]}; [ -n "$active_player" ] && playerctl -p "$active_player" next',
+          ),
+        );
+        self.add_controller(rclick);
+
+        const mclick = new Gtk.GestureClick({ button: 2 });
+        mclick.connect("pressed", () =>
+          run(
+            'players=($(playerctl --list-all 2>/dev/null)); idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); active_player=${players[$idx]}; [ -n "$active_player" ] && playerctl -p "$active_player" previous',
+          ),
+        );
+        self.add_controller(mclick);
+
+        const sideClick = new Gtk.GestureClick({ button: 8 });
+        sideClick.connect("pressed", () => {
+          mprisPopover.popup();
+        });
+        self.add_controller(sideClick);
+
+        const scroll = new Gtk.EventControllerScroll({
+          flags: Gtk.EventControllerScrollFlags.VERTICAL,
+          propagationPhase: Gtk.PropagationPhase.CAPTURE,
+        });
+        scroll.connect("scroll", (_, _dx, dy) => {
+          const dir = dy < 0 ? "+ 1" : "- 1 + count";
+          run(
+            `players=($(playerctl --list-all 2>/dev/null)); count=\${#players[@]}; if [ $count -gt 1 ]; then idx=$(cat /tmp/active_player_idx 2>/dev/null || echo 0); idx=$(( (idx ${dir}) % count )); echo $idx > /tmp/active_player_idx; fi`,
+          );
+        });
+        self.add_controller(scroll);
+      }}
+    >
+      <label label={mprisData((m) => m.text)} />
+    </button>
+  );
+})()}
 
           <label cssClasses={["uptime"]} label={uptime} />
           <label cssClasses={["battery"]} label={battery} />
@@ -417,70 +525,134 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
 </button>
 
 
-          <button
+          {/* ЗВУК */}
+          <menubutton
             cssClasses={["volume"]}
-            onClicked={() => execAsync("pavucontrol")}
             $={(self) => {
-              const scroll = new Gtk.EventControllerScroll({
-                flags: Gtk.EventControllerScrollFlags.VERTICAL,
-              });
+              const scroll = new Gtk.EventControllerScroll({ flags: Gtk.EventControllerScrollFlags.VERTICAL, propagationPhase: Gtk.PropagationPhase.CAPTURE });
               scroll.connect("scroll", (_, _dx, dy) => {
-                if (dy < 0) {
-                  run(
-                    "V=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}'); NEW=$(( ((V + 4) / 5) * 5 + 5 )); [ $NEW -le 100 ] && wpctl set-volume @DEFAULT_AUDIO_SINK@ ${NEW}%",
-                  );
-                } else {
-                  run(
-                    "V=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}'); NEW=$(( ((V - 1) / 5) * 5 - 5 )); [ $NEW -ge 0 ] && wpctl set-volume @DEFAULT_AUDIO_SINK@ ${NEW}% || wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%",
-                  );
-                }
+                if (dy < 0) run("V=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}'); NEW=$(( ((V + 4) / 5) * 5 + 5 )); [ $NEW -le 100 ] && wpctl set-volume @DEFAULT_AUDIO_SINK@ ${NEW}%");
+                else run("V=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}'); NEW=$(( ((V - 1) / 5) * 5 - 5 )); [ $NEW -ge 0 ] && wpctl set-volume @DEFAULT_AUDIO_SINK@ ${NEW}% || wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%");
               });
               self.add_controller(scroll);
             }}
           >
             <label label={audioOut} />
-          </button>
+            <popover>
+              <box orientation={Gtk.Orientation.VERTICAL} spacing={8} cssClasses={["popup-box"]}>
+                <box spacing={8}>
+                  <button onClicked={() => run("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")}>
+                    <label label="  " />
+                  </button>
+                  <slider
+  hexpand
+  widthRequest={160}
+  min={0}
+  max={1}
+  step={0.01}
+  value={volVal}
+  $={(self) => {
+    self.connect("change-value", (_, _scroll, val) => {
+      const pct = Math.max(0, Math.min(100, Math.round(val * 100)));
+      run(`wpctl set-volume @DEFAULT_AUDIO_SINK@ ${pct}%`);
+      return false;
+    });
+  }}
+/>
+                </box>
+                <button onClicked={() => execAsync("pavucontrol")}>
+                  <label label="Открыть Pavucontrol" />
+                </button>
+              </box>
+            </popover>
+          </menubutton>
 
-          <button
-            cssClasses={["mic"]}
-            onClicked={() => execAsync("pavucontrol")}
-          >
+          {/* МИКРОФОН */}
+          <menubutton cssClasses={["mic"]}>
             <label label={audioIn} />
-          </button>
+            <popover>
+              <box orientation={Gtk.Orientation.VERTICAL} spacing={8} cssClasses={["popup-box"]}>
+                <box spacing={8}>
+                  <button onClicked={() => run("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle")}>
+                    <label label="  " />
+                  </button>
+                  <slider
+  hexpand
+  widthRequest={160}
+  min={0}
+  max={1}
+  step={0.01}
+  value={micVal}
+  $={(self) => {
+    self.connect("change-value", (_, _scroll, val) => {
+      const pct = Math.max(0, Math.min(100, Math.round(val * 100)));
+      run(`wpctl set-volume @DEFAULT_AUDIO_SOURCE@ ${pct}%`);
+      return false;
+    });
+  }}
+/>
+                </box>
+              </box>
+            </popover>
+          </menubutton>
 
-          <button
+          {/* ЯРКОСТЬ ЭКРАНА */}
+          <menubutton
             cssClasses={["backlight"]}
-            onClicked={() =>
-              run("brightness-controller || generic-bl-slider || nwg-displays")
-            }
             $={(self) => {
-              const scroll = new Gtk.EventControllerScroll({
-                flags: Gtk.EventControllerScrollFlags.BOTH_AXES,
-                propagationPhase: Gtk.PropagationPhase.CAPTURE,
-              });
+              const scroll = new Gtk.EventControllerScroll({ flags: Gtk.EventControllerScrollFlags.BOTH_AXES, propagationPhase: Gtk.PropagationPhase.CAPTURE });
               scroll.connect("scroll", (_, _dx, dy) => {
-                if (dy !== 0) {
-                  run(
-                    dy < 0
-                      ? "brightnessctl -d intel_backlight set +5%"
-                      : "brightnessctl -d intel_backlight set 5%-",
-                  );
-                }
+                if (dy !== 0) run(dy < 0 ? "brightnessctl -d intel_backlight set +5%" : "brightnessctl -d intel_backlight set 5%-");
                 return true;
               });
               self.add_controller(scroll);
             }}
           >
             <label label={backlight} />
-          </button>
+            <popover>
+              <box spacing={8} cssClasses={["popup-box"]}>
+                <label label="  " />
+                <slider
+  hexpand
+  widthRequest={160}
+  min={0.02}
+  max={1}
+  step={0.01}
+  value={lightVal}
+  $={(self) => {
+    self.connect("change-value", (_, _scroll, val) => {
+      const pct = Math.max(2, Math.min(100, Math.round(val * 100)));
+      run(`brightnessctl -d intel_backlight set ${pct}%`);
+      return false;
+    });
+  }}
+/>
 
-          <button
-            cssClasses={["bluetooth"]}
-            tooltipText={btData((b) => b.tooltip)}
-            onClicked={() => execAsync("blueman-manager")}
-          >
+              </box>
+            </popover>
+          </menubutton>
+
+          {/* BLUETOOTH */}
+          <menubutton cssClasses={["bluetooth"]} tooltipText={btData((b) => b.tooltip)}>
             <label label={btData((b) => b.text)} />
-          </button>
+            <popover>
+              <box orientation={Gtk.Orientation.VERTICAL} spacing={6} cssClasses={["popup-box"]}>
+                <button onClicked={() => run("bluetoothctl show | grep -q 'Powered: yes' && bluetoothctl power off || bluetoothctl power on")}>
+                  <label label="   Вкл / Выкл адаптер" />
+                </button>
+                <For each={btDevices}>
+                  {(dev) => (
+                    <button onClicked={() => run(`bluetoothctl ${dev.connected ? "disconnect" : "connect"} ${dev.mac}`)}>
+                      <label label={`${dev.connected ? "  " : "  "} ${dev.name}`} />
+                    </button>
+                  )}
+                </For>
+                <button onClicked={() => execAsync("blueman-manager")}>
+                  <label label="Blueman Manager..." />
+                </button>
+              </box>
+            </popover>
+          </menubutton>
 
           <button
             cssClasses={["power"]}

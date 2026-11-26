@@ -120,3 +120,46 @@ window.Bar {
         }
     }
 }
+
+popover contents {
+    background-color: #11111b;
+    border: 1px solid #313244;
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: #cdd6f4;
+
+    .popup-box button {
+        background-color: #1e1e2e;
+        border-radius: 6px;
+        padding: 4px 10px;
+        color: #cdd6f4;
+
+        &:hover {
+            background-color: #313244;
+            color: #00ffff;
+        }
+    }
+
+    scale {
+        min-height: 16px;
+
+        trough {
+            min-height: 6px;
+            border-radius: 4px;
+            background-color: #313244;
+
+            highlight {
+                background-color: #00ffff;
+                border-radius: 4px;
+            }
+
+            slider {
+                min-width: 12px;
+                min-height: 12px;
+                border-radius: 50%;
+                background-color: #cdd6f4;
+            }
+        }
+    }
+}
+
