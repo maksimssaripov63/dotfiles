@@ -29,6 +29,7 @@ hl.config({
       workspaceActiveBorder = "rgb(203, 166, 247)",
       onBottom = false,
       autoDrag = true,
+      showEmptyWorkspace = false,
       -- Add other overview settings here
     },
   },
