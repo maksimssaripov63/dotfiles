@@ -317,3 +317,5 @@ alias plasma="dbus-run-session startplasma-wayland"
 
 alias windows="sdl-freerdp3 /v:192.168.122.100 /u:\"maksimsaripov63@gmail.com\" /p:\"1436\" /cert:ignore /dynamic-resolution"
 alias onlyoffice="onlyoffice-desktopeditors &"
+
+alias gnome="dbus-run-session -- gnome-shell --display-server --wayland"
